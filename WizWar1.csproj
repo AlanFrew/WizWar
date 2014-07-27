@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E44BB2CC-199D-4819-811F-7C6AA003F855}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WizWar1</RootNamespace>
+    <AssemblyName>WizWar1</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\PointBasedAttribute.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Effects\AbsorbEffect.cs" />
+    <Compile Include="Effects\AlterDurationValue.cs" />
+    <Compile Include="Effects\AlterSpellEffect.cs" />
+    <Compile Include="Effects\BlindEffect.cs" />
+    <Compile Include="Effects\BluntEffect.cs" />
+    <Compile Include="Effects\BuddyEffect.cs" />
+    <Compile Include="Effects\CopySpellEffect.cs" />
+    <Compile Include="Effects\CreateWallEffect.cs" />
+    <Compile Include="Effects\ExtraActionEffect.cs" />
+    <Compile Include="Effects\CollateralDamageEffect.cs" />
+    <Compile Include="Effects\CreateItemEffect.cs" />
+    <Compile Include="Effects\MakeCreationEffect.cs" />
+    <Compile Include="Effects\DaggerAttack.cs" />
+    <Compile Include="Effects\DestroyItemEffect.cs" />
+    <Compile Include="Effects\DestroyWallEffect.cs" />
+    <Compile Include="Effects\DispelCreationEffect.cs" />
+    <Compile Include="Effects\DragEffect.cs" />
+    <Compile Include="Effects\DrawEffect.cs" />
+    <Compile Include="Effects\DropObjectEffect.cs" />
+    <Compile Include="Effects\EndTurnEffect.cs" />
+    <Compile Include="Effects\ForceDiscardEffect.cs" />
+    <Compile Include="Effects\ForceMoveEffect.cs" />
+    <Compile Include="Effects\PartialCounterEffect.cs" />
+    <Compile Include="Effects\CounterSpellEffect.cs" />
+    <Compile Include="Effects\ItemThrowEffect.cs" />
+    <Compile Include="Effects\MultiplyPointBased.cs" />
+    <Compile Include="Effects\NullifyEffect.cs" />
+    <Compile Include="Effects\TakeDiscardEffect.cs" />
+    <Compile Include="Effects\StateControlEffect.cs" />
+    <Compile Include="Errors\ImpossibleTaskException.cs" />
+    <Compile Include="Errors\NotFoundException.cs" />
+    <Compile Include="EventSource.cs" />
+    <Compile Include="Events\Continue Events\AllowTargeting.cs" />
+    <Compile Include="Events\Continue Events\ContinueEvent.cs" />
+    <Compile Include="Events\Continue Events\WindowCallback.cs" />
+    <Compile Include="Events\DrawEvent.cs" />
+    <Compile Include="Events\ItemRevealEvent.cs" />
+    <Compile Include="Events\DamageEvent.cs" />
+    <Compile Include="Events\DestroyObjectEvent.cs" />
+    <Compile Include="Events\ItemGainEvent.cs" />
+    <Compile Include="Events\SettleHandEvent.cs" />
+    <Compile Include="Events\TargetedEvent.cs" />
+    <Compile Include="Implementations\Extensions.cs" />
+    <Compile Include="Implementations\ItemCard.cs" />
+    <Compile Include="Implementations\Stone.cs" />
+    <Compile Include="Interfaces\IDamageable.cs" />
+    <Compile Include="Interfaces\IStackable.cs" />
+    <Compile Include="Interfaces\IStone.cs" />
+    <Compile Include="Items\BloodStoneItem.cs" />
+    <Compile Include="Items\BrainStoneItem.cs" />
+    <Compile Include="Items\IllusionWallCreation.cs" />
+    <Compile Include="Items\MasterKeyItem.cs" />
+    <Compile Include="Items\WizardBladeItem.cs" />
+    <Compile Include="Library\Collections.cs" />
+    <Compile Include="Library\ICopiable.cs" />
+    <Compile Include="Listener.cs" />
+    <Compile Include="Spells\Absorb.cs" />
+    <Compile Include="Spells\AbsorbSpell.cs" />
+    <Compile Include="Spells\Add.cs" />
+    <Compile Include="Spells\Amplify.cs" />
+    <Compile Include="Spells\Anti-Anti.cs" />
+    <Compile Include="Spells\AroundTheCorner.cs" />
+    <Compile Include="Spells\Blind.cs" />
+    <Compile Include="Spells\Blunt.cs" />
+    <Compile Include="Spells\BrainStone.cs" />
+    <Compile Include="Spells\Buddy.cs" />
+    <Compile Include="Spells\CardErasure.cs" />
+    <Compile Include="Spells\DestroyWall.cs" />
+    <Compile Include="Spells\DispelCreation.cs" />
+    <Compile Include="Spells\Drag.cs" />
+    <Compile Include="Spells\DropObject.cs" />
+    <Compile Include="Items\ThornbushCreation.cs" />
+    <Compile Include="Events\CastEvent.cs" />
+    <Compile Include="Events\TurnStartEvent.cs" />
+    <Compile Include="Events\UselessEffectEvent.cs" />
+    <Compile Include="Library\Collisions.cs" />
+    <Compile Include="Implementations\Marker.cs" />
+    <Compile Include="Markers\DurationBasedMarker.cs" />
+    <Compile Include="Markers\PointBasedMarker.cs" />
+    <Compile Include="User Interface\CardChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Interface\CardChooser.Designer.cs">
+      <DependentUpon>CardChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Interface\EffectsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Interface\EffectsWindow.Designer.cs">
+      <DependentUpon>EffectsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Interface\SquareInfoPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Interface\SquareInfoPane.Designer.cs">
+      <DependentUpon>SquareInfoPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Interface\TargetChooser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Interface\TargetChooser.Designer.cs">
+      <DependentUpon>TargetChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Interface\DummyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Interface\DummyForm.Designer.cs">
+      <DependentUpon>DummyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Spells\BloodStone.cs" />
+    <Compile Include="Spells\MasterKey.cs" />
+    <Compile Include="Spells\FullShield.cs" />
+    <Compile Include="Spells\LightningBlast.cs" />
+    <Compile Include="Spells\Thornbush.cs" />
+    <Compile Include="Events\NewEffectEvent.cs" />
+    <Compile Include="Events\SpellCounteredEvent.cs" />
+    <Compile Include="Spells\Extend.cs" />
+    <Compile Include="Spells\Fireball.cs" />
+    <Compile Include="Spells\WallOfFire.cs" />
+    <Compile Include="Spells\FullReflection.cs" />
+    <Compile Include="Spells\GoAway.cs" />
+    <Compile Include="Events\StateChangeEvent.cs" />
+    <Compile Include="Implementations\CardExtension.cs" />
+    <Compile Include="Implementations\CreatedWall.cs" />
+    <Compile Include="Implementations\Trap.cs" />
+    <Compile Include="Implementations\Treasure.cs" />
+    <Compile Include="Errors\InvalidTypeException.cs" />
+    <Compile Include="Errors\NotReadyException.cs" />
+    <Compile Include="Implementations\Card.cs" />
+    <Compile Include="Implementations\Item.cs" />
+    <Compile Include="Implementations\Locatable.cs" />
+    <Compile Include="Implementations\Number.cs" />
+    <Compile Include="Implementations\Obstruction.cs" />
+    <Compile Include="Implementations\Spell.cs" />
+    <Compile Include="Implementations\Targetable.cs" />
+    <Compile Include="Implementations\Wall.cs" />
+    <Compile Include="Interfaces\IDurationBased.cs" />
+    <Compile Include="Implementations\CreatedItem.cs" />
+    <Compile Include="Interfaces\ICreatedItem.cs" />
+    <Compile Include="IListener.cs" />
+    <Compile Include="Interfaces\ILocatable.cs" />
+    <Compile Include="Interfaces\IPointBased.cs" />
+    <Compile Include="Interfaces\ITreasure.cs" />
+    <Compile Include="Spells\Invisible.cs" />
+    <Compile Include="Library\DoublePoint.cs" />
+    <Compile Include="Library\Index.cs" />
+    <Compile Include="Library\SuperSearcher.cs" />
+    <Compile Include="Spells\LockInPlace.cs" />
+    <Compile Include="Errors\BadCardDescException.cs" />
+    <Compile Include="Board.cs" />
+    <Compile Include="Implementations\Creation.cs" />
+    <Compile Include="Spells\PassThroughWall.cs" />
+    <Compile Include="Spells\PickLock.cs" />
+    <Compile Include="Spells\PowerRun.cs" />
+    <Compile Include="Spells\PowerStone.cs" />
+    <Compile Include="Spells\PowerThrust.cs" />
+    <Compile Include="Spells\Reflection.cs" />
+    <Compile Include="Spells\RelocateSector.cs" />
+    <Compile Include="Spells\RemoveLock.cs" />
+    <Compile Include="Spells\RotateSector.cs" />
+    <Compile Include="Spells\ShadowStone.cs" />
+    <Compile Include="Spells\ShieldStone.cs" />
+    <Compile Include="Spells\Shrink.cs" />
+    <Compile Include="Spells\SlowDeath.cs" />
+    <Compile Include="Spells\SoulStone.cs" />
+    <Compile Include="Spells\Speed.cs" />
+    <Compile Include="Spells\SpeedStone.cs" />
+    <Compile Include="Spells\StoneDead.cs" />
+    <Compile Include="Spells\SuddenDeath.cs" />
+    <Compile Include="Spells\Swap.cs" />
+    <Compile Include="Spells\Telepath.cs" />
+    <Compile Include="Spells\TeleportOpponent.cs" />
+    <Compile Include="Spells\MistBody.cs" />
+    <Compile Include="Spells\ThoughtSteal.cs" />
+    <Compile Include="Spells\Ugly.cs" />
+    <Compile Include="User Interface\ControlPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Interface\ControlPanel.Designer.cs">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Effects\DamageEffect.cs" />
+    <Compile Include="Effects\LostTurnEffect.cs" />
+    <Compile Include="Errors\Error.cs" />
+    <Compile Include="Errors\NoSpellToCastError.cs" />
+    <Compile Include="Interfaces\ICard.cs" />
+    <Compile Include="Interfaces\ICreation.cs" />
+    <Compile Include="Library\IIndexable.cs" />
+    <Compile Include="Interfaces\IItem.cs" />
+    <Compile Include="User Interface\InfoPane.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Interface\InfoPane.Designer.cs">
+      <DependentUpon>InfoPane.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaces\ISpell.cs" />
+    <Compile Include="Spells\Dagger.cs" />
+    <Compile Include="Deck.cs" />
+    <Compile Include="Implementations\Door.cs" />
+    <Compile Include="Implementations\Effect.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="Event.cs" />
+    <Compile Include="User Interface\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User Interface\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameState.cs" />
+    <Compile Include="Spells\IllusionWall.cs" />
+    <Compile Include="Interfaces\IWall.cs" />
+    <Compile Include="Spells\Large Rock.cs" />
+    <Compile Include="Events\LostTurnEvent.cs" />
+    <Compile Include="Library\LibraryFunc.cs" />
+    <Compile Include="Spells\Magic Stone.cs" />
+    <Compile Include="Spells\MagicWall.cs" />
+    <Compile Include="MapGenerator.cs" />
+    <Compile Include="Events\MoveEvent.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User Interface\WrappedListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WallSpace.cs" />
+    <EmbeddedResource Include="User Interface\CardChooser.resx">
+      <DependentUpon>CardChooser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\DummyForm.resx">
+      <DependentUpon>DummyForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\ControlPanel.resx">
+      <DependentUpon>ControlPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\EffectsWindow.resx">
+      <DependentUpon>EffectsWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\InfoPane.resx">
+      <DependentUpon>InfoPane.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\SquareInfoPane.resx">
+      <DependentUpon>SquareInfoPane.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\TargetChooser.resx">
+      <DependentUpon>TargetChooser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Main Classes.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Spells\SolidStone.cs" />
+    <Compile Include="Implementations\Square.cs" />
+    <Compile Include="Interfaces\ITarget.cs" />
+    <Compile Include="Implementations\TrueWall.cs" />
+    <Compile Include="User Interface\UIControl.cs" />
+    <Compile Include="Errors\UnreachableException.cs" />
+    <Compile Include="Implementations\Wizard.cs" />
+    <Compile Include="Spells\Wizardblade.cs" />
+    <Compile Include="Spells\VisionStone.cs" />
+    <Compile Include="Spells\WaterBolt.cs" />
+    <Compile Include="Spells\WaterWall.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Info.txt" />
+    <Content Include="Rod.cur" />
+    <Content Include="TODO.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Code GraveYard\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

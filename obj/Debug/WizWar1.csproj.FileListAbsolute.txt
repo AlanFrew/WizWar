@@ -1,0 +1,42 @@
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.Form1.resources
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.Properties.Resources.resources
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.csproj.GenerateResource.Cache
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\bin\Debug\WizWar1.exe
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\bin\Debug\WizWar1.pdb
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.exe
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.pdb
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.ControlPanel.resources
+C:\Documents and Settings\Alan Frew\My Documents\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.InfoPane.resources
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.exe
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.pdb
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.ControlPanel.resources
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.Form1.resources
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.InfoPane.resources
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.Properties.Resources.resources
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\bin\Debug\WizWar1.exe
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\bin\Debug\WizWar1.pdb
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.DummyForm.resources
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.TargetChooser.resources
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.CardChooser.resources
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.EffectsWindow.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.exe
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.pdb
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\bin\Debug\WizWar1.exe
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\bin\Debug\WizWar1.pdb
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResolveAssemblyReference.cache
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.CardChooser.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.DummyForm.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.ControlPanel.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.EffectsWindow.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.Form1.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.InfoPane.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.Properties.Resources.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.TargetChooser.resources
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResGen.read.1.tlog
+F:\BISHOP dump\Old Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResGen.write.1.tlog
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\bin\Debug\WizWar1.exe.config
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResGen.read.1.tlog
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResGen.write.1.tlog
+C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.SquareInfoPane.resources

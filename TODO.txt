@@ -1,0 +1,6 @@
+﻿TODO list
+
+1. Extend FullShield to work against secondary effects
+2. Test Add to see if it works
+3. Make destroy wall work
+4. Check one attack per round logic

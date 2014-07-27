@@ -1,0 +1,40 @@
+﻿Some information about the game:
+
+Coordinates:
+
+Game Logic coordinates are in Square units. The center of each square is an integer.
+Display Logic coordinates are in pixels. When converted to Square units, the edges of squares are integers.
+Coordinates must be adjusted by 0.5 to convert between game logic and display logic
+
+
+Lifecycle of Casting a Spell:
+
+1. Select the spell in the control panel and click cast
+2. Optionally select a number card and click the number button
+3. If the spell requires a target, click the target on the board form
+4. The board form determines what was clicked and checks line of sight
+4b. THe board form runs ValidateTarget()
+5. If the target is in a square, open the target chooser window
+6. Select the target in one of the windows, then click the corresponding cast button
+7. The control panel runs TargetValidated()
+8. The casting wizard runs CastSpell()
+
+
+Flow Control System: Event dispatcher
+
+The simplest flow control system is to notify all interested classes of the impending event using the event dispatcher. 
+However, this is only sufficient to change the event, not to prevent it completely.
+
+Another system is to use IssueUltimatum(), which notifies listeners and halts execution until the Proceed state
+is reached. I have no idea how that would happen since the thread is sleeping. Also, by surrounding a block of code and
+using this function, it is possible to skip the step entirely. This function is for attempts only, meaning that it asks
+permission to carry out some code. The priority field sorts out which disputes between listeners. If the code is
+executed, eventDispatcher.notify() should be called with the IsAttempt property set to false, to let all listeners know
+that the event did end up taking place (possibly over the objections of some listeners).
+
+
+Effect Grouping
+
+In order to make sure Effects coordinate properly, I added the Ran() function to Target. After an effect does its job,
+it reports to its source with the result. This allows the source to add new effects based on the success of the first
+effect.

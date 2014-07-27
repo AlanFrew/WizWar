@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="WizWar1.Locatable" Collapsed="true">
+    <Position X="14" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABgAAAAYAA=</HashCode>
+      <FileName>Implementations\Locatable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Creation" Collapsed="true">
+    <Position X="10" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAIAAAAAEAAIABAQCAAQUAAAAEABggAAAYAQ=</HashCode>
+      <FileName>Implementations\Creation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Targetable" Collapsed="true">
+    <Position X="11.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAACAAAAAEAAAAAAQAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Implementations\Targetable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Spell" Collapsed="true">
+    <Position X="10" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AA9AAKCCAgCgkAAEAAgAQEgKA0AZACIAAAAgAAACACA=</HashCode>
+      <FileName>Implementations\Spell.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Card" Collapsed="true">
+    <Position X="9" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAEAAAAAAQAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\Card.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Item" Collapsed="true">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoAAAiBEAgIgBCIAAAIAAAwCAAANACAAAAAgAAgAAAI=</HashCode>
+      <FileName>Implementations\Item.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Wall" Collapsed="true">
+    <Position X="14" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACAAAACAAAEAQAAAAAAAAAAAAA0AAAgkAAhAAAAAA=</HashCode>
+      <FileName>Implementations\Wall.cs</FileName>
+      <NewMemberFileName>Dead Files\Wall.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Number" Collapsed="true">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAgAAAAAAA=</HashCode>
+      <FileName>Implementations\Number.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WizWar1.Obstruction" Collapsed="true">
+    <Position X="8.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAEAAAAAAAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\Obstruction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WizWar1.Treasure" Collapsed="true">
+    <Position X="12.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAgAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Implementations\Treasure.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.CreatedWall" Collapsed="true">
+    <Position X="11.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AJACAAAACAAAEAQAAAAAAAAAAAAA0AAAgsAAAAAAAAA=</HashCode>
+      <FileName>Implementations\CreatedWall.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Wizard" Collapsed="true">
+    <Position X="15.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABQAQIAAgAAAAAAkAEABQKYAAAAEggoCCAgAgggkYAA=</HashCode>
+      <FileName>Implementations\Wizard.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="WizWar1.Effect" Collapsed="true">
+    <Position X="11.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAFAEEICAAAACCIEMAEAAACIAYAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Implementations\Effect.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="WizWar1.IWall" Collapsed="true">
+    <Position X="5.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAACAAAEAAAAAAAAAAAAAAAkAAAAkAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IWall.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WizWar1.ICreation" Collapsed="true">
+    <Position X="1.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICreation.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WizWar1.ITarget" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAACAAAAAEAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITarget.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WizWar1.ILocatable" Collapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYAA=</HashCode>
+      <FileName>Interfaces\ILocatable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WizWar1.ICard" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICard.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WizWar1.ISpell" Collapsed="true">
+    <Position X="0.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACCAgCgEAAAAAgAAEACAwAZACAAAAAAAAAAACA=</HashCode>
+      <FileName>Interfaces\ISpell.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WizWar1.IItem" Collapsed="true">
+    <Position X="3.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AoAAAgAEAgAAACIAAAIAAAAAAAAJACAAAAAAAAgAAAI=</HashCode>
+      <FileName>Interfaces\IItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WizWar1.ITreasure" Collapsed="true">
+    <Position X="4.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ITreasure.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="WizWar1.ICreatedItem" Collapsed="true">
+    <Position X="3" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\ICreatedItem.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
