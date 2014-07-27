@@ -8,7 +8,7 @@ namespace WizWar1 {
 
 class MapGenerator {
     public void floob() {
-        FileInfo myFile = new FileInfo(@"C:\Users\Alan Frew\My Code\My C#\WizWar1\map1.txt");
+        FileInfo myFile = new FileInfo("map1.txt");
         StreamWriter sw = myFile.CreateText();
 
         sw.WriteLine("Walls:");

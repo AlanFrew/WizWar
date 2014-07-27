@@ -40,3 +40,64 @@ C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\bin\Debug\WizWar1.exe.c
 C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResGen.read.1.tlog
 C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\ResGen.write.1.tlog
 C:\Users\Alan Frew\My Code\My C#\WizWar1\WizWar1\WizWar1\obj\Debug\WizWar1.SquareInfoPane.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\WizWar1.exe.config
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.exe
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.pdb
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\WizWar1.exe
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\WizWar1.pdb
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.csprojResolveAssemblyReference.cache
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.CardChooser.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.DummyForm.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.ControlPanel.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.EffectsWindow.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.Form1.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.InfoPane.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.Properties.Resources.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.SquareInfoPane.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.TargetChooser.resources
+C:\Users\Frucifer\Documents\GitHub\WizWar\obj\Debug\WizWar1.csproj.GenerateResource.Cache
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Rod.cur
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\007.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\200x50_mask.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\50x50_border.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\big lou.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\bitmap6.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\board01.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\build_page.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\button_complete.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\button_scroll_down.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\button_scroll_up.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\char_page.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\cougar.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\door.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\horiz_illusion_wall.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\horiz_wall_selected.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\hortense.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\ico_balance.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\ico_bubble.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\ico_dagger.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\ico_foot.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\ico_rod.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\ico_rod.cur
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\ico_shield.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\ico_sword.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\model_battleaxe.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\model_claws.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\model_double_spear.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\my_port.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\no_char.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\portrait.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\raz.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\Rod.cur
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\sgt. admiral.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\square_green.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\square_selected.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\square_teal.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\sword_icon.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\tactics_title.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\thornbush.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\treasure.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\vertical_door.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\vert_illusion_wall.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\Arena\vert_wall_selected.bmp
+C:\Users\Frucifer\Documents\GitHub\WizWar\bin\Debug\map2.txt

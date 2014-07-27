@@ -154,7 +154,7 @@ class Board {
         MapReadMode m = MapReadMode.Doors;
         Wizard owner = null;
 
-        StreamReader sr = new StreamReader(@"C:\Users\Alan Frew\My Code\My C#\WizWar1\map2.txt");
+        StreamReader sr = new StreamReader("map2.txt");
         while(sr.EndOfStream == false) {
             String[] wallPoints = new String[4];
             String whole_line = sr.ReadLine();

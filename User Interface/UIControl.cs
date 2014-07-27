@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace WizWar1 {
 internal class UIControl {
-    private static Cursor castingCursor = new Cursor(@"C:\Users\Alan Frew\My Pictures\Arena\Rod.cur");
+    private static Cursor castingCursor = new Cursor("Rod.cur");
 
     private UIState previousState = UIState.Locked;
     public UIState PreviousState {

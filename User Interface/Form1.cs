@@ -15,20 +15,20 @@ using Library;
 namespace WizWar1 {
 
 public partial class Form1 : Form {
-    //Image foo = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\foo.bmp");
-    Image square = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\square_teal.bmp");
-    Image blue_wizard = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\model_battleaxe.bmp");
-    Image red_wizard = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\model_claws.bmp");
-    public Image horiz_door = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\door.bmp");
-    public Image vert_door = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\vertical_door.bmp");
-    Image castingCursor = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\ico_rod.bmp");
-    Image thornbush = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\thornbush.bmp");
-    Image selectedSquare = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\square_selected.bmp");
-    Image selectedVertWall = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\vert_wall_selected.bmp");
-    Image selectedHorizWall = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\horiz_wall_selected.bmp");
-    Image treasure = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\treasure.bmp");
-    public Image horizIllusionWall = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\horiz_illusion_wall.bmp");
-    public Image vertIllusionWall = Image.FromFile(@"C:\Users\Alan Frew\My Pictures\Arena\vert_illusion_wall.bmp");
+    //Image foo = Image.FromFile(@"foo.bmp");
+    Image square = Image.FromFile(@"Arena\square_teal.bmp");
+    Image blue_wizard = Image.FromFile(@"Arena\model_battleaxe.bmp");
+    Image red_wizard = Image.FromFile(@"Arena\model_claws.bmp");
+    public Image horiz_door = Image.FromFile(@"Arena\door.bmp");
+    public Image vert_door = Image.FromFile(@"Arena\vertical_door.bmp");
+    Image castingCursor = Image.FromFile(@"Arena\ico_rod.bmp");
+    Image thornbush = Image.FromFile(@"Arena\thornbush.bmp");
+    Image selectedSquare = Image.FromFile(@"Arena\square_selected.bmp");
+    Image selectedVertWall = Image.FromFile(@"Arena\vert_wall_selected.bmp");
+    Image selectedHorizWall = Image.FromFile(@"Arena\horiz_wall_selected.bmp");
+    Image treasure = Image.FromFile(@"Arena\treasure.bmp");
+    public Image horizIllusionWall = Image.FromFile(@"Arena\horiz_illusion_wall.bmp");
+    public Image vertIllusionWall = Image.FromFile(@"Arena\vert_illusion_wall.bmp");
 
     private Point[] squares;
     private UIControl myUI;
