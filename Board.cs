@@ -4,31 +4,30 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Library;
-using System.Drawing;
-using System.Diagnostics;
 using System.Windows.Forms;
+using WizWar1.Properties;
 
 namespace WizWar1
 {
 
 class Board {
     //Apparently coordinate system starts at the center of the top left square, so that wizards are on integers and walls are x.5
-    public class NeighborPair {
-        public NeighborPair(Square tFirst, Square tSecond) {
-            first = tFirst;
-            second = tSecond;
-        }
+    //public class NeighborPair {
+    //    public NeighborPair(Square tFirst, Square tSecond) {
+    //        first = tFirst;
+    //        second = tSecond;
+    //    }
 
-        public NeighborPair() {
-        }
+    //    public NeighborPair() {
+    //    }
 
-        public Square first;
-        public Square second;
-    }
+    //    public Square first;
+    //    public Square second;
+    //}
 
     private Square[][] board;
-    public Square[] squaresByIndex;
-    public Dictionary<DoublePoint, IWall> walls = new Dictionary<DoublePoint, IWall>();
+    public Square[] SquaresByIndex;
+    public Dictionary<DoublePoint, IWall> Walls = new Dictionary<DoublePoint, IWall>();
 
     private int columns;
     public int Width {
@@ -44,15 +43,7 @@ class Board {
         }
     }
 
-    private int nSquares;
-    public int NSquares {
-        get {
-            return nSquares;
-        }
-        set {
-            nSquares = value;
-        }
-    }
+    public int NSquares { get; set; }
 
     int index = 0;
     public Board(int tPlayers) {
@@ -60,17 +51,16 @@ class Board {
         case 2:
             columns = 5;
             rows = 10;
-            nSquares = columns * rows;
-            squaresByIndex = new Square[nSquares];
+            NSquares = columns * rows;
+            SquaresByIndex = new Square[NSquares];
             board = new Square[columns][];
             for (int i = 0; i < columns; ++i) {
                 board[i] = new Square[rows];
                 for (int j = 0; j < rows; ++j)
                 {
-                    Square temp = new Square(i, j);
-                    temp.ID = index;
+                    var temp = new Square(i, j) {ID = index};
                     board[i][j] = temp;
-                    squaresByIndex[index] = temp;
+                    SquaresByIndex[index] = temp;
                     index++;
                 }
             }
@@ -97,7 +87,7 @@ class Board {
 
     public IWall LookForWall(double tX, double tY) {
         try {
-            return walls[new DoublePoint(tX, tY)];
+            return Walls[new DoublePoint(tX, tY)];
         }
         catch (KeyNotFoundException) {
         }
@@ -127,7 +117,7 @@ class Board {
                 }
 
                 try {
-                    return walls[new DoublePoint(xCoordinate, yCoordinate)];
+                    return Walls[new DoublePoint(xCoordinate, yCoordinate)];
                 }
                 catch (KeyNotFoundException) {
                     return null;
@@ -139,47 +129,57 @@ class Board {
     }
 
     public void AddWall(IWall tWall) {
-        walls.Add(new DoublePoint(tWall.X, tWall.Y), tWall);
+        Walls.Add(new DoublePoint(tWall.X, tWall.Y), tWall);
+
+        if (tWall.IsVertical()) {
+            tWall.FirstNeighbor = At(tWall.X - 0.5, tWall.Y);
+            tWall.SecondNeighbor = At(tWall.X + 0.5, tWall.Y);
+        }
+        else {
+            tWall.FirstNeighbor = At(tWall.X, tWall.Y - 0.5);
+            tWall.SecondNeighbor = At(tWall.X, tWall.Y + 0.5);
+        }
+
+        tWall.ArrangeNeighbors();
     }
 
     public void RemoveWall(IWall tWall) {
         try {
-            walls.Remove(new DoublePoint(tWall.X, tWall.Y));
+            Walls.Remove(new DoublePoint(tWall.X, tWall.Y));
         }
         catch (KeyNotFoundException) {
         }
     }
 
-    public void readMapFile() {
-        MapReadMode m = MapReadMode.Doors;
+    public void ReadMapFile() {
+        var m = MapReadMode.Doors;
         Wizard owner = null;
+        var sr = new StreamReader(Settings.Default.MapFile);
 
-        StreamReader sr = new StreamReader("map2.txt");
         while(sr.EndOfStream == false) {
-            String[] wallPoints = new String[4];
-            String whole_line = sr.ReadLine();
-            if (whole_line.Contains("Walls:")) {
+            String wholeLine = sr.ReadLine();
+            if (wholeLine.Contains("Walls:")) {
                 m = MapReadMode.Walls;
                 continue;
             }
-            else if (whole_line.Contains("Doors:")) {
+            else if (wholeLine.Contains("Doors:")) {
                 m = MapReadMode.Doors;
                 continue;
             }
-            else if (whole_line.Equals("")) {
+            else if (wholeLine.Equals("")) {
                 continue;
             }
-            else if (whole_line.Contains("Treasures:")) {
+            else if (wholeLine.Contains("Treasures:")) {
                 m = MapReadMode.Treasures;
                 continue;
             }
-            else if (whole_line.Contains("Bases:")) {
+            else if (wholeLine.Contains("Bases:")) {
                 m = MapReadMode.Bases;
                 continue;
             }
 
             if (m == MapReadMode.Walls || m == MapReadMode.Doors) {
-                wallPoints = whole_line.Split(' ');
+                string[] wallPoints = wholeLine.Split(' ');
                 int x1;
                 Int32.TryParse(wallPoints[0], out x1);
                 int y1;
@@ -215,52 +215,50 @@ class Board {
                     wall.Y = wall.FirstNeighbor.Y + 0.5;
                 }
 
-                walls.Add(new DoublePoint(wall.X, wall.Y), wall);
+                Walls.Add(new DoublePoint(wall.X, wall.Y), wall);
             }
             else if (m == MapReadMode.Treasures) {
-                Treasure tempTreasure = null;
-                if (whole_line == "Blue") {
-                    owner = GameState.wizards[0];
+                if (wholeLine == "Blue") {
+                    owner = GameState.Wizards[0];
                 }
-                else if (whole_line == "Red") {
-                    owner = GameState.wizards[1];
+                else if (wholeLine == "Red") {
+                    owner = GameState.Wizards[1];
                 }
-                else if (whole_line == "Green") {
-                    owner = GameState.wizards[2];
+                else if (wholeLine == "Green") {
+                    owner = GameState.Wizards[2];
                 }
-                else if (whole_line == "Yellow") {
-                    owner = GameState.wizards[3];
+                else if (wholeLine == "Yellow") {
+                    owner = GameState.Wizards[3];
                 }
                 else {
-                    String[] treasurePoints = new String[2];
-                    treasurePoints = whole_line.Split(' ');
+                    var treasurePoints = new String[2];
+                    treasurePoints = wholeLine.Split(' ');
                     int x;
                     int y;
                     Int32.TryParse(treasurePoints[0], out x);
                     Int32.TryParse(treasurePoints[1], out y);
 
-                    tempTreasure = new Treasure(owner);
+                    var tempTreasure = new Treasure(owner);
                     tempTreasure.Location = GameState.BoardRef.At(x, y);
-                    tempTreasure.Location.AddItem(tempTreasure);
+                    tempTreasure.Location.AddLocatable(tempTreasure);
                 }
             }
             else if (m == MapReadMode.Bases) {
-                if (whole_line == "Blue") {
-                    owner = GameState.wizards[0];
+                if (wholeLine == "Blue") {
+                    owner = GameState.Wizards[0];
                 }
-                else if (whole_line == "Red") {
-                    owner = GameState.wizards[1];
+                else if (wholeLine == "Red") {
+                    owner = GameState.Wizards[1];
                 }
-                else if (whole_line == "Green") {
-                    owner = GameState.wizards[2];
+                else if (wholeLine == "Green") {
+                    owner = GameState.Wizards[2];
                 }
-                else if (whole_line == "Yellow") {
-                    owner = GameState.wizards[3];
+                else if (wholeLine == "Yellow") {
+                    owner = GameState.Wizards[3];
                 }
             }
             else {
-                String[] basePoints = new String[2];
-                basePoints = whole_line.Split(' ');
+                string[] basePoints = wholeLine.Split(' ');
                 int x;
                 int y;
                 Int32.TryParse(basePoints[0], out x);
@@ -272,21 +270,17 @@ class Board {
         sr.Close();
     }
 
-    private class WallComparer : IComparer<IWall> {
-        public int Compare(IWall wall1, IWall wall2) {
-            wall1.ArrangeNeighbors();
-            wall2.ArrangeNeighbors();
-            return (int)(wall1.FirstNeighbor.Y - wall2.FirstNeighbor.Y);
-        }
-    }
-
-    
-            
-
+    //private class WallComparer : IComparer<IWall> {
+    //    public int Compare(IWall wall1, IWall wall2) {
+    //        wall1.ArrangeNeighbors();
+    //        wall2.ArrangeNeighbors();
+    //        return (int)(wall1.FirstNeighbor.Y - wall2.FirstNeighbor.Y);
+    //    }
+    //}
 
     //arguments are in expanded coordinates
     //this function tests whether a specific line of sight ends on the target
-    public bool testDirectLoS(double x1, double y1, double x2, double y2) {
+    public bool TestDirectLoS(double x1, double y1, double x2, double y2) {
         double ychange = (y2 - y1);
         double xchange  = (x2 - x1);
         double slope = ychange / xchange;
@@ -294,12 +288,10 @@ class Board {
         bool ypositive = (ychange > 0);
         double testx;
         double testy;
-        double testXIntercept;
-        double testYIntercept;
 
         for (testx = x1; testx < x2; testx++) {
             if (xpositive) {
-                testXIntercept = slope * (testx - x1) + y1;
+                double testXIntercept = slope * (testx - x1) + y1;
 
                 //Console.WriteLine("checking key " + Math.Ceiling(testx) + " " + Math.Ceiling(testx + 1) + " " + Math.Floor(testXIntercept) + " " + Math.Ceiling(testXIntercept));
                 //if (vertical_walls.ContainsKey("" + Math.Ceiling(testx) + " " + Math.Ceiling(testx + 1) + " " + Math.Floor(testXIntercept) + " " + Math.Ceiling(testXIntercept))) {
@@ -307,7 +299,7 @@ class Board {
                 //    return false;
                 //}
 
-                if (walls.ContainsKey(new DoublePoint(testx + 0.5, testXIntercept))) {
+                if (Walls.ContainsKey(new DoublePoint(testx + 0.5, testXIntercept))) {
                     return false;
                 }
             }
@@ -315,9 +307,9 @@ class Board {
 
         for (testy = y1; testy < y2; testy++) {
             if (ypositive) {
-                testYIntercept = (testy - y1) / slope + x1;
+                double testYIntercept = (testy - y1) / slope + x1;
 
-                if (walls.ContainsKey(new DoublePoint(testYIntercept + 0.5, testy))) {
+                if (Walls.ContainsKey(new DoublePoint(testYIntercept + 0.5, testy))) {
                     return false;
                 }
             }
@@ -327,7 +319,7 @@ class Board {
     }
 
     public bool TestLoSNew(double xChange, double yChange, UIControl casterUI) {
-        StringBuilder testString = new StringBuilder();
+        var testString = new StringBuilder();
         double yStart = GameState.ActivePlayer.Y;
         double xStart = GameState.ActivePlayer.X;
         double xCurrent = xStart;
@@ -353,7 +345,7 @@ class Board {
             IWall w = LookForWall(xCurrent, Math.Round(yCurrent));
             if (w != null) {
                 //if (Math.Abs(xCurrent - xStart + xChange) <= 1 && casterUI.SpellToCast.IsValidSpellTargetType(TargetTypes.Wall)) {
-                if (w.X == casterUI.myForm.SelectedWall.X && w.Y == casterUI.myForm.SelectedWall.Y) {
+                if (w.X == casterUI.myBoard.SelectedWall.X && w.Y == casterUI.myBoard.SelectedWall.Y) {
                     return true;
                 }
                 else {
@@ -464,7 +456,7 @@ class Board {
     }
 
     public bool TestLoSToWall(double xChange, double yChange, WallSpace targetWall) {
-        StringBuilder testString = new StringBuilder();
+        var testString = new StringBuilder();
         double yStart = GameState.ActivePlayer.Y;
         double xStart = GameState.ActivePlayer.X;
         double xCurrent = xStart;
@@ -569,6 +561,28 @@ class Board {
             //yCurrent = Library.IndexFixer(yCurrent, this.rows);
         }
         return true;
+    }
+
+    public bool IsAdjacent(ILocatable first, ILocatable second) {
+        if (first is Square && second is Square) {
+            if (Enum.GetValues(typeof (Direction)).Cast<Direction>().Any(d => (first as Square).GetNeighbor(d) == second)) {
+                return true;
+            }
+        }
+
+        if (first is Square && second is IWall) {
+            var temp = first;
+            first = second;
+            second = temp;
+        }
+
+        if (first is IWall) {
+            if (second is Square) {
+                return (first as IWall).FirstNeighbor == second || (first as IWall).SecondNeighbor == second;
+            }
+        }
+
+        return false;
     }
 }
 }

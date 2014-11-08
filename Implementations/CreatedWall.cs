@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 using Library;
 
 namespace WizWar1 {
-class CreatedWall : Creation, ICreation, IWall {
-    protected Image myImageVertical = null;
-    protected Image myImageHorizontal = null;
-    public Image MyImage {
+class CreatedWall : Creation, IWall {
+	protected Bitmap myImageVertical = null;
+	protected Bitmap myImageHorizontal = null;
+	public Bitmap MyImage {
         get {
             if (IsVertical()) {
                 return myImageVertical;

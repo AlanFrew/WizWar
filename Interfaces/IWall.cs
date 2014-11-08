@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace WizWar1 {
-interface IWall : ILocatable {
+interface IWall : ILocatable, IDestroyable {
     Image MyImage {
         get;
         set;

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-    interface ITreasure : IItem {
+﻿namespace WizWar1 {
+    interface ITreasure : ILocatable, ICarriable {
         Wizard Owner {
             get;
             set;

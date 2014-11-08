@@ -1,173 +1,192 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WizWar1 {
-class Item : Locatable, IItem {
-    protected String name;
-    public String Name {
-        get {
-            return name;
-        }
-        set {
-            name = value;
-        }
-    }
+	class Item : Locatable, IItem {
+		public String Name { get; set; }
 
-    protected Wizard carrier;
-    public Wizard Carrier {
-        get {
-            return carrier;
-        }
-        set {
-            if (carrier == value) {
-                return;
-            }
+		protected Wizard carrier;
+		public Wizard Carrier {
+			get {
+				return carrier;
+			}
+			set {
+				if (carrier == value) {
+					return;
+				}
 
-            if (value == null) {
-                if (carrier != null) {
-                    carrier.loseItem(this);
-                }
+				if (value == null) {
+					if (carrier != null) {
+						carrier.loseItem(this);
+					}
 
-                //location = GameState.BoardReference.At(value.X, value.Y);
-            }
-                
-            carrier = value;
-        }
-    }
+					//location = GameState.BoardReference.At(value.X, value.Y);
+				}
 
-    protected Square location;
-    public Square Location {
-        get {
-            if (Carrier != null) {
-                return GameState.BoardRef.At(Carrier.X, Carrier.Y);
-            }
+				carrier = value;
+				Controller = value;
+			}
+		}
 
-            return location;
-        }
-        set {
-            if (location == value) {
-                return;
-            }
+		protected Square location;
+		public Square Location {
+			get {
+				if (Carrier != null) {
+					return GameState.BoardRef.At(Carrier.X, Carrier.Y);
+				}
 
-            if (carrier == null) {
-                if (location != null) {
-                    location.RemoveItem(this);
-                }
-                value.AddItem(this);
-                location = value;
-                x = location.X;
-                y = location.Y;
-            }
+				return location;
+			}
+			set {
+				if (location == value) {
+					return;
+				}
 
-            //can't use this property on a carried item; must be dropped() or lost() first
-        }
-    }
+				if (carrier == null) {
+					if (location != null) {
+						location.RemoveItem(this);
+					}
+					value.AddLocatable(this);
+					location = value;
+					x = location.X;
+					y = location.Y;
+				}
 
-    protected bool requiresLoS;
-    public bool RequiresLoS {
-        get {
-            return requiresLoS;
-        }
-        set {
-            requiresLoS = value;
-        }
-    }
+				//can't use this property on a carried item; must be dropped() or lost() first
+			}
+		}
 
-    protected List<TargetTypes> itemTargetTypes;
+		public bool RequiresLoS { get; set; }
 
-    protected List<Effect> effectsWaiting;
-    public List<Effect> EffectsWaiting {
-        get {
-            return effectsWaiting;
-        }
-        set {
-            effectsWaiting = value;
-        }
-    }
+		public List<TargetTypes> ValidTargetTypes { get; set; }
 
-    protected ITarget itemTarget;
-    public ITarget ItemTarget {
-        get {
-            return itemTarget;
-        }
-        set {
-            itemTarget = value;
-        }
-    }
+		public Wizard Creator { get; set; }
 
-    public Item() {
-        itemTargetTypes = new List<TargetTypes>();
-        requiresLoS = false;
-    }
+		//public List<Effect> EffectsWaiting { get; set; }
 
-    public virtual bool IsValidTargetTypeForItem(TargetTypes tTargetType) {
-        foreach (TargetTypes t in itemTargetTypes) {
-            if (tTargetType == t) {
-                return true;
-            }
-        }
+		public ITarget ItemTarget { get; set; }
 
-        return false;
-    }
+		public Item() {
+			activeTargetType = TargetTypes.Item;
 
-    public virtual bool IsValidTargetForItem(ITarget tTarget) {
-        foreach (TargetTypes t in itemTargetTypes) {
-            if (tTarget.ActiveTargetType == t) {
-                return true;
-            }
-        }
+			ValidTargetTypes = new List<TargetTypes>();
+			//EffectsWaiting = new List<Effect>();
 
-        return false;
-    }
+			RequiresLoS = false;
+		}
 
-    public void OnGainParent(Wizard tHolder) {
-        OnGainChild(tHolder);
-        Carrier = tHolder;
-    }
+		public virtual bool IsValidTargetType(TargetTypes tTargetType) {
+			foreach (TargetTypes t in ValidTargetTypes) {
+				if (tTargetType == t) {
+					return true;
+				}
+			}
 
-    public virtual void OnGainChild(Wizard tHolder) {
-        //empty by default
-    }
+			return false;
+		}
 
-    public void OnLossParent(Wizard tDropper) {
-        OnLossChild(tDropper);
-        Carrier = null;
-    }
+		public virtual bool IsOnlyValidTargetTypeForItem(TargetTypes tTargetType) {
+			return (ValidTargetTypes.Contains(tTargetType) && ValidTargetTypes.Count == 1);
+		}
 
-    public virtual void OnLossChild(Wizard tDropper) {
-        //empty by default
-    }
+		//perhaps I should only have one version on this function (no parent) because there is a danger of duplicate events
+		public bool IsValidTargetParent(ITarget tTarget) {
+			if (IsValidTargetType(tTarget.ActiveTargetType) == false) {
+				return false;
+			}
 
-    public void OnActivationParent() {
-        OnActivationChild();
-    }
+			if (IsValidTarget(tTarget) == true) {
+				if (GameState.InitialUltimatum(new TargetingEvent(tTarget, Controller)) == Redirect.Proceed) {
+					return true;
+				}
+			}
+			return false;
+		}
 
-    public virtual void OnActivationChild() {
-        //empty by default
-    }
+		public virtual bool IsValidTarget(ITarget tTarget) {
+			foreach (TargetTypes t in ValidTargetTypes) {
+				if (tTarget.ActiveTargetType == t) {
+					return true;
+				}
+			}
 
-    public void OnResolutionParent() {
-        OnResolutionChild();
-    }
+			return false;
+		}
 
-    public virtual void OnResolutionChild() {
-        //empty by default
-    }
+		public void OnGainParent(Wizard tHolder) {
+			OnGainChild(tHolder);
+			Carrier = tHolder;
+		}
 
-    private double shotDirection;
-    public double ShotDirection {
-        get {
-            return shotDirection;
-        }
-        set {
-            shotDirection = value;
-        }
-    }
+		public virtual void OnGainChild(Wizard tHolder) {
+			//empty by default
+		}
 
-    public override string ToString() {
-        return GetType().Name;
-    }
-}
+		public void OnLossParent(Wizard tDropper) {
+			OnLossChild(tDropper);
+			Carrier = null;
+		}
+
+		public virtual void OnLossChild(Wizard tDropper) {
+			//empty by default
+		}
+
+		public void OnActivationParent() {
+			OnActivationChild();
+		}
+
+		public virtual void OnActivationChild() {
+			//empty by default
+		}
+
+		public virtual IItemUsage UseItem() {
+			return null;
+		}
+
+		public void OnResolutionParent() {
+			OnResolutionChild();
+		}
+
+		public virtual void OnResolutionChild() {
+			//empty by default
+		}
+
+		//public int CardValue { get; set; }
+
+		public double ShotDirection { get; set; }
+
+		public override string ToString() {
+			return GetType().Name;
+		}
+
+		public void Destroy(DestroyEffect destroyEffect) {
+			if (Carrier != null) {
+				Carrier.loseItem(this);
+			}
+			else {
+				Location = null;
+			}
+		}
+
+		public object Aimable {
+			get {
+				return this;
+			}
+		}
+
+		public ITarget Target {
+			get {
+				return ItemTarget;
+			}
+			set {
+				ItemTarget = value;
+			}
+		}
+
+		public Wizard Controller { get; set; }
+
+		public string Description { get; set; }
+
+		public ICard OriginalCard { get; set; }
+	}
 }

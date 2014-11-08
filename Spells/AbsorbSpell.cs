@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
     class AbsorbSpell : Spell {
         //private NullifyEffect myNullify;
         //private DrawEffect myDraw;
 
         public AbsorbSpell() {
             Name = "Absorb Spell";
-            validCastingTypes.Add(SpellType.Counteraction);
-            validTargetTypes.Add(TargetTypes.Spell);
+            Description = "Spin a magical net to capture an incoming spell; counter the spell and add it to your hand";
+            ValidCastingTypes.Add(SpellType.Counteraction);
+            ValidTargetTypes.Add(TargetTypes.Spell);
         }
 
-        public override bool IsValidSpellTarget(ITarget tTarget, Wizard tCaster) {
-            if ((tTarget as ISpell).SpellTarget == tCaster) {
-                if ((tTarget as ISpell).Caster != tCaster) {
+        public override bool IsValidTarget(ITarget tTarget) {
+            if ((tTarget as ISpell).SpellTarget == Caster) {
+                if ((tTarget as ISpell).Caster != Caster) {
                     return true;
                 }
             }

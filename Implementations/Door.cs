@@ -1,21 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class Door : Wall, IDamageable {
     public bool locked;
 
     public Door() {
         locked = true;
-        myImageHorizontal = GameState.wizards[0].myUI.myForm.horiz_door;
-        myImageVertical = GameState.wizards[0].myUI.myForm.vert_door;
+        myImageHorizontal = GameState.Wizards[0].myUI.myBoard.horiz_door;
+        myImageVertical = GameState.Wizards[0].myUI.myBoard.vert_door;
     }
 
     public override bool IsPassable(Wizard tWizard) {
         foreach (IItem i in tWizard.Inventory) {
-            if (i is MasterKey) {
+            if (i is MasterKeyItem) {
                 return true;
             }
         }

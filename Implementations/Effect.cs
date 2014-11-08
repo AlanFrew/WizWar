@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Library;
-using System.Reflection;
-using System.Windows.Forms;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
 namespace WizWar1 {
 public abstract class Effect : ITarget, ICopiable<Effect>, IStackable {
-    internal int duration;
     internal ITarget target;
     internal Wizard Caster;
     internal ITarget source;
@@ -21,7 +16,6 @@ public abstract class Effect : ITarget, ICopiable<Effect>, IStackable {
 
     public Effect() {
         requiresLoS = false;
-        duration = 0;
         markers = new List<Marker>();
         myEvents = new List<Event>();
         //SetEvent();
@@ -67,10 +61,10 @@ public abstract class Effect : ITarget, ICopiable<Effect>, IStackable {
     }
 
     public virtual Effect RecursiveCopy() {
-        object temp = this.MemberwiseClone();
+        object temp = MemberwiseClone();
         Effect result = (Effect)temp;
-        result.markers = this.markers.RecursiveCopyList();
-        result.myEvents = this.myEvents.RecursiveCopyList();
+        result.markers = markers.RecursiveCopyList();
+        result.myEvents = myEvents.RecursiveCopyList();
         return result;
     }
 
@@ -92,12 +86,10 @@ public abstract class Effect : ITarget, ICopiable<Effect>, IStackable {
     }
 
     public static T Cast<T>(T o) where T : Event {
-        return (T)o;
+        return o;
     }
 
-    public virtual void OnRunChild() {
-        throw new NotImplementedException();    //this method must be overriden
-    }
+    public abstract void OnRunChild();
 
     internal static T New<T>(Wizard tCaster, ITarget tSource, ITarget tTarget, int tDuration = 0) where T : Effect, new() {
         return Initialize<T>(tCaster, tSource, tTarget, new T(), tDuration);
@@ -109,13 +101,17 @@ public abstract class Effect : ITarget, ICopiable<Effect>, IStackable {
         tEffect.target = tTarget;
 
         foreach (Marker m in tEffect.markers) {
-            if (m is DurationBasedMarker && tEffect.duration == 0) {
-                if (tSource is ISpell && (tSource as ISpell).AcceptsNumber == true) {
-                    tEffect.duration = (tSource as ISpell).CardValue;
-                    (m as DurationBasedMarker).DurationBasedValue = (tSource as ISpell).CardValue;
-                }
-                else {
-                    tEffect.duration = 1;
+            if (m is DurationBasedMarker) {
+                var dbm = m as DurationBasedMarker;
+                if (dbm.DurationBasedValue == 0.0) {
+
+                    if (tSource is ISpell && tSource is INumberable) {
+                        dbm.DurationBasedValue = (tSource as NumberedSpell).CardValue;
+                        (m as DurationBasedMarker).DurationBasedValue = (tSource as NumberedSpell).CardValue;
+                    }
+                    else {
+                        dbm.DurationBasedValue = 1;
+                    }
                 }
             }
         }
@@ -149,10 +145,10 @@ public abstract class Effect : ITarget, ICopiable<Effect>, IStackable {
 
     public override string ToString() {
         if (Caster != null) {
-            return this.GetType().Name + " cast by " + Caster.Name;
+            return GetType().Name + " cast by " + Caster.Name;
         }
 
-        return this.GetType().Name;
+        return GetType().Name;
     }
 
     //[source]

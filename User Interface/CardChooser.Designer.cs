@@ -8,7 +8,7 @@
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param Name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing) {
             if (disposing && (components != null)) {
                 components.Dispose();
@@ -35,7 +35,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(97, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Enter a card name:";
+            this.label1.Text = "Enter a card Name:";
             // 
             // textBox1
             // 

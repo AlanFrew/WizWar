@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
     class BrainStone : Spell {
         public BrainStone() {
             Name = "Brainstone";
-            validCastingTypes.Add(SpellType.Item);
+            Description = "Create a small, flickering stone that quickens thought when worn on the brow";
+            ValidCastingTypes.Add(SpellType.Item);
+            ValidTargetTypes.Add(TargetTypes.None);
         }
 
-        public override bool IsValidSpellTarget(ITarget tTarget, Wizard tCaster) {
+        public override bool IsValidTarget(ITarget tTarget) {
             return false;
         }
 

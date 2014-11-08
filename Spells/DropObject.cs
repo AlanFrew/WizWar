@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class DropObject : Spell {
     public DropObject() {
         Name = "Drop Object";
-        validTargetTypes.Add(TargetTypes.Item);
+        Description = "Make an object momentarily heavy, causing the carrier to drop it";
+        ValidCastingTypes.Add(SpellType.Attack);
+        ValidTargetTypes.Add(TargetTypes.Item);
     }
 
-    public override bool IsValidSpellTarget(ITarget tTarget, Wizard tCaster) {
+    public override bool IsValidTarget(ITarget tTarget) {
         //AllowTargeting a = new AllowTargeting((tTarget as IItem).Carrier); //not sure this class is valid anymore
-        if (GameState.InitialUltimatum(Event.New<TargetingEvent>(true, new TargetingEvent((tTarget as IItem).Carrier))) == Redirect.Proceed) {
+        if (GameState.InitialUltimatum(Event.New<TargetingEvent>(true, new TargetingEvent((tTarget as IItem).Carrier, Controller))) == Redirect.Proceed) {
             return true;
         }
 

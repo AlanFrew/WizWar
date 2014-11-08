@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class Buddy : Spell {
     public Buddy() {
         Name = "Buddy";
-        validCastingTypes.Add(SpellType.Neutral);
-        validTargetTypes.Add(TargetTypes.Wizard);
+        Description = "Make friends with an opponent, preventing him from attacking you as long as you don't attack him";
+        ValidCastingTypes.Add(SpellType.Neutral);
+        ValidTargetTypes.Add(TargetTypes.Wizard);
     }
 
     //public override bool IsValidSpellTarget(ITarget tTarget) {

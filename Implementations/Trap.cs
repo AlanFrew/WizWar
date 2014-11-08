@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-    class Trap : Card {
+﻿namespace WizWar1 {
+    class Trap : Cardable {
     }
 }

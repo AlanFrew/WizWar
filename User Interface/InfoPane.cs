@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WizWar1 {
@@ -47,7 +41,7 @@ namespace WizWar1 {
             }
 
             StatusEffectsListBox.Items.Clear();
-            foreach (Effect e in GameState.durationEffects) {
+            foreach (Effect e in GameState.DurationEffects) {
                 if (e.target == w) {
                     StatusEffectsListBox.Items.Add(e.ToString());
                 }
@@ -62,7 +56,7 @@ namespace WizWar1 {
             progressBar1.Hide();
             label3.Text = "Items Here";
             InventoryListBox.Items.Clear();
-            foreach (IItem i in s.ItemsHere) {
+            foreach (ICarriable i in s.CarriablesHere) {
                 InventoryListBox.Items.Add(i);
             }
 

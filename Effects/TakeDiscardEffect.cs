@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class TakeDiscardEffect : Effect {
     ICard cardToRemove;
     public TakeDiscardEffect(ICard tCard) {
@@ -11,7 +6,7 @@ class TakeDiscardEffect : Effect {
     }
 
     public override void OnRunChild() {
-        GameState.discard.Remove(cardToRemove);
+        GameState.Discard.Remove(cardToRemove);
         Caster.giveCard(cardToRemove);
     }
 }

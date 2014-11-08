@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿namespace WizWar1 {
+	public class ItemRevealEvent : Event {
+		internal IItem NewItem;
 
-namespace WizWar1 {
-class ItemRevealEvent : Event {
-    public ItemCard NewItem;
+		internal ItemRevealEvent(IItem tNewItem) {
+			NewItem = tNewItem;
 
-    public ItemRevealEvent(ItemCard tNewItem) {
-        NewItem = tNewItem;
-    }
-}
+			NewItem.Creator = GameState.ActivePlayer;
+		}
+	}
 }

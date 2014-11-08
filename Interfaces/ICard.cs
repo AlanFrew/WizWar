@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Windows.Forms.VisualStyles;
+using Library;
 
 namespace WizWar1 {
-interface ICard : ITarget {
-    String Name {
-        get;
-        set;
-    }
+interface ICard : ITarget, ICopiable<ICard> {
+    ICardable WrappedCard { get; set; }
+    
+    String Name { get; set; }
 
-
+    string Description { get; set; }
 
     String ToString();
 }

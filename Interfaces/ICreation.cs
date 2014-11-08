@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Drawing;
 
 namespace WizWar1 {
-interface ICreation : ILocatable {
+interface ICreation : ILocatable, IDestroyable {
     Wizard Creator {
         get;
     }
 
-    void BecomeCreation();
-
+    Image MyImage { get; set; }
 }
 }

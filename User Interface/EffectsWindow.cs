@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WizWar1 {
@@ -27,7 +21,7 @@ namespace WizWar1 {
 
             //}
 
-            foreach (Effect e in GameState.durationEffects) {
+            foreach (Effect e in GameState.DurationEffects) {
                 if (e.target == myUI.myWizard) {
                     PersonalEffectsListBox.Items.Add(e);
                 }
@@ -42,8 +36,8 @@ namespace WizWar1 {
 
         private void button1_Click(object sender, EventArgs e) {
             if (PersonalEffectsListBox.SelectedItem != null) {
-                if (myUI.SpellToCast.IsValidSpellTargetParent(PersonalEffectsListBox.SelectedItem as ITarget, myUI.myWizard)) {
-                    myUI.SpellToCast.SpellTarget = PersonalEffectsListBox.SelectedItem as ITarget;
+                if (myUI.CurrentAimable.IsValidTargetParent(PersonalEffectsListBox.SelectedItem as ITarget)) {
+                    myUI.CurrentAimable.Target = PersonalEffectsListBox.SelectedItem as ITarget;
                 }
             }
         }

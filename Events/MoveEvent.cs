@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Drawing;
+﻿using Library;
 
 namespace WizWar1 {
 class MoveEvent : Event {
     public Wizard Mover = null;
-    public Point Old;
-    public Point New;
+    public DoublePoint Old;
+	 public DoublePoint New;
 
-    public MoveEvent(Wizard tMover, Point tOld, Point tNew) {
+	 public MoveEvent(Wizard tMover, DoublePoint tOld, DoublePoint tNew) {
         Mover = tMover;
         Old = tOld;
         New = tNew;

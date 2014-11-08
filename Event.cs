@@ -1,19 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 public class Event {
     //these variables are only used sometimes...hope to eliminate
     internal Wizard Controller;
     internal ITarget EventTarget;
     internal ITarget Source;
-    public bool IsAttempt = false;
+    public bool IsAttempt = true;
     //public Effect myEffect;
 
     //start control flow management
-    private ControlFlowState controlFlowEvent;
     private double currentPriority = 0.0;
 
     private Redirect flowController = Redirect.Proceed;
@@ -31,19 +25,13 @@ public class Event {
         return false;
     }
 
-    public Event() {
-        //empty
-    }
-
     internal static T New<T>(bool tIsAttempt, Effect tEffect) where T : Event, new() {
-        T result = new T();
-        result.IsAttempt = tIsAttempt;
-        //result.myEffect = tEffect;
+        var result = new T {IsAttempt = tIsAttempt};
+
         return result;
     }
 
     internal static T New<T>(bool tIsAttempt, T tEvent) where T : Event {
-        //tEvent.myEffect = tEffect;
         return tEvent;
     }
 }

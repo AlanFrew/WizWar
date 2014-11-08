@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Drawing;
 using Library;
 
 namespace WizWar1 {
-class Wall : Locatable, IWall, IDamageable {
+abstract class Wall : Locatable, IWall, IDamageable {
     //public virtual void BecomeWall(Wizard tCaster, double tX, double tY) {
     //    if (this is Creation) {
     //        caster = tCaster;
@@ -17,8 +15,8 @@ class Wall : Locatable, IWall, IDamageable {
     //}
 
     protected Image myImageVertical = null;
-    protected Image myImageHorizontal = null;
-    public Image MyImage {
+	 protected Image myImageHorizontal = null;
+	 public Image MyImage {
         get {
             if (IsVertical()) {
                 return myImageVertical;
@@ -67,12 +65,20 @@ class Wall : Locatable, IWall, IDamageable {
         return false;
     }
 
+    //public bool IsVertical() {
+    //    if (FirstNeighbor.X  == SecondNeighbor.X) {
+    //        return false;
+    //    }
+
+    //    return true;
+    //}
+
     public bool IsVertical() {
-        if (FirstNeighbor.X  == SecondNeighbor.X) {
-            return false;
+        if (X != Math.Round(X)) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public bool IsHorizontal() {
@@ -86,6 +92,12 @@ class Wall : Locatable, IWall, IDamageable {
         if (hitPoints >= 0) {
             GameState.BoardRef.RemoveWall(this);
         }
+    }
+
+    public void Destroy(DestroyEffect destroyEffect) {
+        var doomedWall = GameState.BoardRef.Walls.Where(kvp => kvp.Value == this).First();
+
+        GameState.BoardRef.Walls.Remove(doomedWall.Key);
     }
 }
 }

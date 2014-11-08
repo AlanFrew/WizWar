@@ -1,33 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace WizWar1 {
-class WallSpace : Targetable, ITarget {
-    private double x;
-    public double X {
-        get {
-            return x;
-        }
-        set {
-            x = value;
-        }
-    }
+internal class WallSpace : Targetable {
+    public double X { get; set; }
 
-    private double y;
-    public double Y {
-        get {
-            return y;
-        }
-        set {
-            y = value;
-        }
-    }
+    public double Y { get; set; }
 
     public WallSpace(double tX, double tY) {
-        x = tX;
-        y = tY;
+        X = tX;
+        Y = tY;
+
+        activeTargetType = TargetTypes.WallSpace;
+    }
+
+    public IWall WallHere {
+        get {
+            return GameState.BoardRef.Walls.Values.FirstOrDefault(wall => wall.X == X && wall.Y == Y);
+        }
     }
 }
 }

@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
     class Extend : Spell {
         public Extend() {
             Name = "Extend";
-            validTargetTypes.Add(TargetTypes.Spell);
+            Description = "Double the duration of a spell";
+            ValidCastingTypes.Add(SpellType.Neutral);
+            ValidTargetTypes.Add(TargetTypes.Spell);
         }
 
-        public override bool IsValidSpellTarget(ITarget tTarget, Wizard tCaster) {
+        public override bool IsValidTarget(ITarget tTarget) {
             foreach (Marker m in (tTarget as ISpell).Markers) {
                 if (m is DurationBasedMarker) {
                     return true;

@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace WizWar1 {
 class BuddyEffect : Effect, IListener<TargetingEvent, Event>, IListener<TargetedEvent, Event> {
+    private DurationBasedMarker duration;
+
     public BuddyEffect() {
-        duration = Int32.MaxValue - 1;
-        GameState.eventDispatcher.Register<TargetingEvent>(this);
-        GameState.eventDispatcher.Register<TargetedEvent>(this);
+        duration = new DurationBasedMarker(Int32.MaxValue);
+
+        markers.Add(duration);
+
+        GameState.EventDispatcher.Register<TargetingEvent>(this);
+        GameState.EventDispatcher.Register<TargetedEvent>(this);
     }
 
     public override void OnRunChild() {
-        duration++;
+        duration.DurationBasedValue++;
     }
 
     public void OnEvent(TargetingEvent tEvent) {
-        if (target == tEvent.Controller && tEvent.targeted == Caster) {
+        if (tEvent.Controller == this.target && tEvent.targeted == this.Caster) {
             tEvent.SetFlowControl(Redirect.Skip, Double.MaxValue);
         }
     }

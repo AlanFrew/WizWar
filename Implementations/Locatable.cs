@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class Locatable : Targetable, ILocatable {
     protected double x;
     public double X {
@@ -25,14 +20,13 @@ class Locatable : Targetable, ILocatable {
         }
     }
 
-    //private Square square;
-    public Square ContainingSquare {
+    public Square Location {
         get {
             return GameState.BoardRef.At(x, y);
         }
         set {
-            x = value.x;
-            y = value.y;
+            x = value.X;
+            y = value.Y;
         }
     }
 }

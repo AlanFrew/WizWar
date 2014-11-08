@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-class LargeRock : Item {
+﻿namespace WizWar1 {
+class LargeRock : Spell {
     public LargeRock() {
         Name = "Large Rock";
-        itemTargetTypes.Add(TargetTypes.Wizard);
-        itemTargetTypes.Add(TargetTypes.Wall);
-        itemTargetTypes.Add(TargetTypes.Creation);
+        Description = "Throw a large rock for 3 damage";
+        ValidTargetTypes.Add(TargetTypes.None);
+        ValidCastingTypes.Add(SpellType.Item);
     }
 
-    public override void OnActivationChild() {
-        Carrier.myUI.State = UIState.FindingTarget;
-        throw new NotImplementedException();
+    public override bool IsValidTarget(ITarget tTarget) {
+        return false;
+    }
+
+    public override void OnChildCast() {
+        EffectsWaiting.Add(Effect.New<CreateItemEffect<LargeRockItem>>(Caster, this, SpellTarget));
     }
 }
 }

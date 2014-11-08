@@ -1,56 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Runtime.Remoting;
 
 namespace WizWar1 {
-class Card : Targetable, ICard {
-    //not sure how this should interact with CardExtension yet
-    //public String Name {
-    //    get {
-    //        return this.GetName();
-    //    }
-    //    set {
-    //        this.SetName(value);
-    //    }
-    //}
-    
-    protected String name;
-    public String Name {
-        get {
-            return name;
-        }
-        set {
-            name = value;
-        }
-    }
+class Card<T> : Targetable, ICard where T : class, ICardable, new()  {
+    private T wrappedCard;
 
     public Card() {
-        //name = this.GetName();
+        WrappedCard = new T();
+
+        (WrappedCard as Cardable).OriginalCard = this;
     }
 
-    public override String ToString() {
-        //return this.GetName();
-        return name;
+    public ICardable WrappedCard { get { return wrappedCard;} set { wrappedCard = value as T; } }
+
+    public String Name {
+        get { return wrappedCard.Name; }
+        set { wrappedCard.Name = value; }
     }
 
-    public static ICard NewCard<T>() where T : ICard, new() {
-        return new T();
+    public override string ToString() {
+        return wrappedCard.Name;
     }
 
-    public static ICard NewCard(Type t) {
-        if (t.IsSubclassOf(typeof(Card))) {
-            return (System.Activator.CreateInstance(t) as Card);
-        }
-
-        throw new NotSupportedException();
+    public string Description {
+        get { return wrappedCard.Description; }
+        set { wrappedCard.Description = value; }
     }
+
+    public static ICard NewCard<U>() where U : ICard, new() {
+        return new U();
+    }
+
+    //public static ICard NewCard(Type t) {
+    //    if (t.IsSubclassOf(typeof(Card))) {
+    //        return (Activator.CreateInstance(t) as Card);
+    //    }
+
+    //    throw new NotSupportedException();
+    //}
 
     public static ICard NewCard(string name) {
         //maybe add some error checking here
         //I think this creates a card based on the name, given as a string
-        System.Runtime.Remoting.ObjectHandle o = System.Activator.CreateInstance(null, name);
-        return (o.Unwrap() as Card);
+        ObjectHandle o = Activator.CreateInstance(null, name);
+        return (o.Unwrap() as ICard);
+    }
+
+    public ICard RecursiveCopy() {
+        return (Card<T>)MemberwiseClone();
     }
 }
 }

@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WizWar1 {
 class FullReflection : Spell {
     public FullReflection() {
         Name = "Full Reflection";
-        validCastingTypes.Add(SpellType.Counteraction);
-        validTargetTypes.Add(TargetTypes.Spell);
+        Description = "Create a shimmering mirror that reflect an incoming spell back at an opponent";
+        ValidCastingTypes.Add(SpellType.Counteraction);
+        ValidTargetTypes.Add(TargetTypes.Spell);
     }
 
-    public override bool IsValidSpellTarget(ITarget tTarget, Wizard tCaster) {
-        if ((tTarget as Spell).SpellTarget == tCaster) {
+    public override bool IsValidTarget(ITarget tTarget) {
+        if ((tTarget as Spell).SpellTarget == Caster) {
             if ((tTarget as Spell).ActiveSpellType == SpellType.Attack) {
                 return true;
             }

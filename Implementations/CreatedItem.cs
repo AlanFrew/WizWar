@@ -40,7 +40,7 @@
 //        myItem = new Item(); //testing for use with RequiresLoS()
 //        itemName = Name;
 //        itemTargetTypes = new List<TargetTypes>();
-//        //validCastingTypes.Add(SpellType.Item);
+//        //ValidCastingTypes.Add(SpellType.Item);
 //        //validTargets.Add(TargetType.None);
 //    }
 

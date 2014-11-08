@@ -1,43 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WizWar1 {
-interface IItem : ILocatable {
-    Wizard Carrier {
-        get;
-        set;
-    }
+interface IItem : IDestroyable, ILocatable, ICarriable, IAimable, ICardable {
+    
 
-    ITarget ItemTarget {
-        get;
-        set;
-    }
+    ITarget ItemTarget { get; set; }
 
-    Square Location {
-        get;
-        set;
-    }
+    bool RequiresLoS { get; set; }
 
-    bool RequiresLoS {
-        get;
-        set;
-    }
-
-    double ShotDirection {
-        get;
-        set;
-    }
-
-    bool IsValidTargetTypeForItem(TargetTypes tTargetType);
-
-    bool IsValidTargetForItem(ITarget tTarget);
+    Wizard Creator { get; set; }
 
     void OnGainParent(Wizard tHolder);
 
     void OnLossParent(Wizard tDropper);
 
+    [Obsolete]
     void OnActivationChild();
 
     void OnActivationParent();
@@ -45,5 +22,7 @@ interface IItem : ILocatable {
     void OnResolutionChild();
 
     void OnResolutionParent();
+
+    IItemUsage UseItem();
 }
 }

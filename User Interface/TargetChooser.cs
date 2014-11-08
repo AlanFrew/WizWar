@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WizWar1 {
 public partial class TargetChooser : Form {
-    private ISpell spellToCast;
+    private IAimable currentAimable;
     private Square targetSquare;
     private UIControl myUI;
 
-    internal TargetChooser(UIControl tMyUI, Square tTargetSquare, ISpell tSpellToCast) {
+    internal TargetChooser(UIControl tMyUI, Square tTargetSquare, IAimable tAimable) {
         targetSquare = tTargetSquare;
-        spellToCast = tSpellToCast;
+        currentAimable = tAimable;
         myUI = tMyUI;
         InitializeComponent();
 
-        this.WizardTargetListBox.SelectedIndexChanged += new System.EventHandler(this.OnSelectedWizardTargetListBox);
-        this.ItemsTargetListBox.SelectedIndexChanged += new System.EventHandler(this.OnSelectedItemTargetListBox);
-        this.ObstructionTargetListBox.SelectedIndexChanged += new System.EventHandler(this.OnSelectedObstructionTargetListBox);
+        WizardTargetListBox.SelectedIndexChanged += new EventHandler(OnSelectedWizardTargetListBox);
+        ItemsTargetListBox.SelectedIndexChanged += new EventHandler(OnSelectedItemTargetListBox);
+        ObstructionTargetListBox.SelectedIndexChanged += new EventHandler(OnSelectedObstructionTargetListBox);
 
         WizardTargetButton.Enabled = false;
         ItemTargetButton.Enabled = false;
@@ -30,7 +24,7 @@ public partial class TargetChooser : Form {
     }
 
     internal void ValidateTarget() {
-        if (spellToCast.IsValidSpellTargetType(TargetTypes.Wall) || spellToCast.IsValidSpellTargetType(TargetTypes.Creation)) {
+        if (currentAimable.IsValidTargetType(TargetTypes.Wall) || currentAimable.IsValidTargetType(TargetTypes.Creation)) {
             foreach (Creation c in targetSquare.creationsHere) {
                 ObstructionTargetListBox.Items.Add(c);
             }
@@ -49,19 +43,19 @@ public partial class TargetChooser : Form {
             }
         }
 
-        if (spellToCast.IsValidSpellTargetType(TargetTypes.Square)) {
+        if (currentAimable.IsValidTargetType(TargetTypes.Square)) {
             SquareTargetButton.Enabled = true;
         }
 
-        if (spellToCast.IsValidSpellTargetType(TargetTypes.Wizard)) {
-            foreach (Wizard w in GameState.wizards) {
+        if (currentAimable.IsValidTargetType(TargetTypes.Wizard)) {
+            foreach (Wizard w in GameState.Wizards) {
                 if (w.X == targetSquare.X && w.Y == targetSquare.Y) {
                     WizardTargetListBox.Items.Add(w);
                 }
             }  
         }
 
-        if (spellToCast.IsValidSpellTargetType(TargetTypes.Item)) {
+        if (currentAimable.IsValidTargetType(TargetTypes.Item)) {
             foreach (Item i in targetSquare.ItemsHere) {
                 ItemsTargetListBox.Items.Add(i);
             }
@@ -70,11 +64,11 @@ public partial class TargetChooser : Form {
 
     private void OnClickWizardTargetButton(object sender, EventArgs e) {
         if (WizardTargetListBox.SelectedItem != null) {
-            if (spellToCast.IsValidSpellTargetParent(WizardTargetListBox.SelectedItem as Wizard, myUI.myWizard)) {
-                TargetingEvent a = new TargetingEvent(WizardTargetListBox.SelectedItem as Wizard);
+            if (currentAimable.IsValidTargetParent(WizardTargetListBox.SelectedItem as Wizard)) {
+                TargetingEvent a = new TargetingEvent(WizardTargetListBox.SelectedItem as Wizard, myUI.myWizard);
                 if (GameState.InitialUltimatum(a) == Redirect.Proceed) {
-                    myUI.myControl.TargetValidated(WizardTargetListBox.SelectedItem as Wizard, TargetTypes.Wizard);
-                    this.Close();
+                    myUI.myBoard.TargetValidated(WizardTargetListBox.SelectedItem as Wizard, TargetTypes.Wizard);
+                    Close();
                 }
             }
         }
@@ -82,9 +76,9 @@ public partial class TargetChooser : Form {
 
     private void OnClickItemTargetButton(object sender, EventArgs e) {
         if (ItemsTargetListBox.SelectedItem != null) {
-            if (spellToCast.IsValidSpellTargetParent(ItemsTargetListBox.SelectedItem as IItem, myUI.myWizard)) {
-                myUI.myControl.TargetValidated(ItemsTargetListBox.SelectedItem as IItem, TargetTypes.Item);
-                this.Close();
+            if (currentAimable.IsValidTargetParent(ItemsTargetListBox.SelectedItem as IItem)) {
+                myUI.myBoard.TargetValidated(ItemsTargetListBox.SelectedItem as IItem, TargetTypes.Item);
+                Close();
             }
         }
     }
@@ -97,26 +91,26 @@ public partial class TargetChooser : Form {
 
         //being a creation takes precedence over being a wall, I think
         if (o is ICreation) {
-            if (spellToCast.IsValidSpellTargetParent(o as ICreation, myUI.myWizard)) {
-                myUI.myControl.TargetValidated(o as ICreation, TargetTypes.Creation);
-                this.Close();
+            if (currentAimable.IsValidTargetParent(o as ICreation)) {
+                myUI.myBoard.TargetValidated(o as ICreation, TargetTypes.Creation);
+                Close();
                 return;
             }
         }
 
         if (o is IWall) {
-            if (spellToCast.IsValidSpellTargetParent(o as IWall, myUI.myWizard)) {
-                myUI.myControl.TargetValidated(o as IWall, TargetTypes.Wall);
-                this.Close();
+            if (currentAimable.IsValidTargetParent(o as IWall)) {
+                myUI.myBoard.TargetValidated(o as IWall, TargetTypes.Wall);
+                Close();
                 return;
             }
         }
     }
 
     private void OnClickSquareTargetButton(object sender, EventArgs e) {
-        if (spellToCast.IsValidSpellTargetParent(targetSquare, myUI.myWizard)) {
-            myUI.myControl.TargetValidated(targetSquare, TargetTypes.Square);
-            this.Close();
+        if (currentAimable.IsValidTargetParent(targetSquare)) {
+            myUI.myBoard.TargetValidated(targetSquare, TargetTypes.Square);
+            Close();
         }
     }
 

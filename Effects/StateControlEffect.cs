@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace WizWar1 {
 class StateControlEffect : Effect, IListener<StateChangeEvent, Event> {
@@ -14,15 +11,18 @@ class StateControlEffect : Effect, IListener<StateChangeEvent, Event> {
         DesiredState = tDesiredState;
         ControlTarget = tControlTarget;
 
-        GameState.eventDispatcher.Register(this);
-        duration = 1000;
+        GameState.EventDispatcher.Register(this);
+        var duration = markers.First(marker => marker is DurationBasedMarker) as DurationBasedMarker;
+        duration.DurationBasedValue = 1000;
     }
 
     public void OnEvent(StateChangeEvent tEvent) {
         if (tEvent.OldState == WatchState) {
             ControlTarget.State = DesiredState;
-            GameState.eventDispatcher.Deregister(this);
-            duration = 0;
+            GameState.EventDispatcher.Deregister(this);
+
+            var duration = markers.First(marker => marker is DurationBasedMarker) as DurationBasedMarker;
+            duration.DurationBasedValue = 0;
         }
     }
 

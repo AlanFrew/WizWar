@@ -1,14 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-    class Invisible : Spell {
+﻿namespace WizWar1 {
+    class Invisible : NumberedSpell {
         public Invisible() {
             Name = "Invisible";
-            validTargetTypes.Add(TargetTypes.Wizard);
-            acceptsNumber = true;
+            Description = "Fade from sight, cackling madly";
+            ValidCastingTypes.Add(SpellType.Neutral);
+            ValidTargetTypes.Add(TargetTypes.Wizard);
+            //AcceptsNumber = true;
+        }
+
+        public override bool IsValidTarget(ITarget tTarget) {
+            if ((tTarget as Spell).SpellTarget == Caster) {
+                return true;
+            }
+ 
+            return false;
+        }
+
+        public override void OnChildCast() {
+            EffectsWaiting.Add(Effect.New<InvisibleEffect>(Caster, this, SpellTarget, CardValue));
         }
     }
 }

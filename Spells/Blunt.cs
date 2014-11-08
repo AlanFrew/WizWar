@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
     class Blunt : Spell {
         public Blunt() {
             Name = "Blunt";
-            validCastingTypes.Add(SpellType.Counteraction);
-            validTargetTypes.Add(TargetTypes.Effect);
+            Description = "Harden your body, reducing incoming damage by half";
+            ValidCastingTypes.Add(SpellType.Counteraction);
+            ValidTargetTypes.Add(TargetTypes.Effect);
         }
 
         public override void OnChildCast() {

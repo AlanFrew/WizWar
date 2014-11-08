@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
     class Drag : Spell {
         public Drag() {
             Name = "Drag";
-            validTargetTypes.Add(TargetTypes.Item);
-            validTargetTypes.Add(TargetTypes.Wizard);
+            Description = "Drag an object to your square";
+            ValidCastingTypes.Add(SpellType.Neutral);
+            ValidTargetTypes.Add(TargetTypes.Item);
+            ValidTargetTypes.Add(TargetTypes.Wizard);
         }
 
         public override void OnChildCast() {

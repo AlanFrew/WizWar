@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
     class Fireball : Spell {
         public Fireball() {
             Name = "Fireball";
-            validTargetTypes.Add(TargetTypes.Wizard);
-            validTargetTypes.Add(TargetTypes.Wall);
-            validTargetTypes.Add(TargetTypes.Creation);
-            validCastingTypes.Add(SpellType.Attack);
+            Description = "Fling a swirling ball of flame at an opponent. His stones burst apart";
+            ValidTargetTypes.Add(TargetTypes.Wizard);
+            ValidTargetTypes.Add(TargetTypes.Wall);
+            ValidTargetTypes.Add(TargetTypes.Creation);
+            ValidCastingTypes.Add(SpellType.Attack);
         }
 
         public override void OnChildCast() {
-            DamageEffect d = Effect.Initialize<DamageEffect>(Caster, this, SpellTarget, new DamageEffect(5, DamageType.Magical));
+            var d = Effect.Initialize<DamageEffect>(Caster, this, SpellTarget, new DamageEffect(5, DamageType.Magical));
             EffectsWaiting.Add(d);
 
             //if (SpellTarget is Wizard) {
@@ -31,7 +27,7 @@ namespace WizWar1 {
                 if ((tEffect as DamageEffect).Amount > 0) {
                     foreach (Item i in (SpellTarget as Wizard).Inventory) {
                         if (i is Stone) {
-                            GameState.NewEffect(Effect.New<DestroyItemEffect>(Caster, this, i));
+                            GameState.PushEffect(Effect.New<DestroyItemEffect>(Caster, this, i));
                         }
                     }
                 }

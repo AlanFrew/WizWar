@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class DispelCreation : Spell {
     public DispelCreation() {
         Name = "Dispel Creation";
+        Description = "Unstitch the theads of magic holding a creation together, causing it to collapse into dust";
+        ValidCastingTypes.Add(SpellType.Neutral);
+        ValidTargetTypes.Add(TargetTypes.Wall);
     }
 
     public override void OnChildCast() {

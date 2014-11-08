@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Diagnostics;
-using System.Windows.Forms;
 using System.Reflection;
 using Library;
 
@@ -47,13 +44,10 @@ class EventSource<T> where T : Event {
     public void Notify<X>(X tEvent, IListener<X, T> foo = null) where X : T {
         if (tEvent.GetType() == myType) {
             foreach (Object l in listeners) {
-                foreach (Type t in l.GetType().GetInterfaces()) {
-                    Type[] temp = t.GetGenericArguments();
-                    if (temp.Count() > 0 && temp[0] == tEvent.GetType()) {
-                        MethodInfo mi = t.GetMethod("OnEvent", new Type[] { tEvent.GetType() });
-                        mi.Invoke(l, new object[] { tEvent });
-                    }
-                }
+					if (l is IListener<X, T>) {
+						MethodInfo mi = l.GetType().GetMethod("OnEvent", new Type[] { tEvent.GetType() });
+						mi.Invoke(l, new object[] { tEvent });
+					}
             }
         }
         else {

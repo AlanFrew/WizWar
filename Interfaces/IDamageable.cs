@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-interface IDamageable {
+﻿namespace WizWar1 {
+interface IDamageable : IDestroyable {
     void TakeDamage(DamageEffect d);
 }
 }

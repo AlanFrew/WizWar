@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Drawing;
 
 namespace WizWar1 {
 
-class Creation : Targetable, ICreation {
+class Creation : Locatable, ICreation {
     protected String name;
     public String Name {
         get {
@@ -16,21 +14,9 @@ class Creation : Targetable, ICreation {
         }
     }
 
-    protected Targetable targetPiece;
-    public Targetable TargetPiece {
-        get {
-            return targetPiece;
-        }
-        set {
-            targetPiece = value;
-        }
-    }
+    public Targetable TargetPiece { get; set; }
 
-    protected Wizard creator;
-    public Wizard Creator {
-        get { return creator; }
-        set { creator = value; }
-    }
+    public Wizard Creator { get; set; }
 
     protected bool isCreation;
     public bool IsCreation {
@@ -38,55 +24,12 @@ class Creation : Targetable, ICreation {
             return isCreation;
         }
     }
-    
-    #region Duplicated Code
-    #region From Locatable
+   
 
-    protected double x;
-    public double X {
-        get {
-            return x;
-        }
-        set {
-            x = value;
-        }
-    }
-
-    protected double y;
-    public double Y {
-        get {
-            return y;
-        }
-        set {
-            y = value;
-        }
-    }
-
-    public Square Location {
-        get {
-            return GameState.BoardRef.At(x, y);
-        }
-        set {
-            x = value.X;
-            y = value.Y;
-        }
-    }
-
-    #endregion
-    #endregion
-
-    protected TargetTypes targetType;
-    public TargetTypes TargetType {
-        get {
-            return targetType;
-        }
-        set {
-            TargetType = value;
-        }
-    }
+    public TargetTypes TargetType { get; set; }
 
     protected Creation() {
-        targetType = TargetTypes.Creation;
+        TargetType = TargetTypes.Creation;
         activeTargetType = TargetTypes.Creation;
     }
 
@@ -105,20 +48,12 @@ class Creation : Targetable, ICreation {
 
     //}
 
-    public void BecomeCreation() {
-        if (x < 0 || y < 0 || Location == null) {
-            throw new InvalidTypeException();
-        }
-
-        isCreation = true;
-    }
-
     public override string ToString() {
-        return this.GetType().Name;
+        return GetType().Name;
     }
 
     public static T New<T>(MakeCreationEffect<T> tEffect, T result) where T : Creation {
-        result.creator = tEffect.Caster;
+        result.Creator = tEffect.Caster;
         result.activeTargetType = TargetTypes.Creation;
         if (tEffect.target is Square) {
             result.Location = tEffect.target as Square;
@@ -130,8 +65,14 @@ class Creation : Targetable, ICreation {
     }
 
     public void Initialize(Wizard tCaster, Square tLocation) {
-        creator = tCaster;
+        Creator = tCaster;
         Location = tLocation;
     }
+
+    public void Destroy(DestroyEffect destroyEffect) {
+        GameState.Creations.Remove(this);
+    }
+
+    public virtual Image MyImage { get; set; }
 }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WizWar1 {
     public enum Direction {
@@ -9,8 +6,8 @@ namespace WizWar1 {
         North = 0, South, East, West
     }
 
-    public class DirectionC {
-        public static Direction oppositeDirection(Direction tDirection) {
+    internal class DirectionC {
+        internal static Direction oppositeDirection(Direction tDirection) {
             switch (tDirection) {
                 case Direction.West:
                     return Direction.East;
@@ -24,7 +21,45 @@ namespace WizWar1 {
                     throw new UnreachableException();
             }
         }
-        public static int nDirections = 4;
+        internal static int nDirections = 4;
+
+        internal static Direction AngleToDirection(double angle) {
+            var reducedAngle = angle % 2 * Math.PI;
+
+            var roundedAngle = (int)Math.Round(reducedAngle / (Math.PI / 2));
+
+            switch (roundedAngle) {
+                case 0: return Direction.East;
+                case 1: return Direction.North;
+                case 2: return Direction.West;
+                case 3: return Direction.South;
+                default:
+                    throw new UnreachableException();
+            }
+        }
+
+        internal static Direction DirectionToTarget(ILocatable source, ILocatable target) {
+            var xChange = source.X - target.X;
+            var yChange = source.Y - target.Y;
+
+            if (xChange == 0 && yChange == 0) {
+                throw new Exception("Direction is undefined because the points are the same");
+            }
+
+            if (Math.Abs(xChange) > Math.Abs(yChange)) {
+                if (xChange > 0) {
+                    return Direction.West;
+                }
+
+                return Direction.East;
+            }
+
+            if (yChange > 0) {
+                return Direction.South;
+            }
+
+            return Direction.North;
+        }   
     }
 
     public enum MapReadMode {
@@ -32,7 +67,7 @@ namespace WizWar1 {
     }
 
     public enum UIState {
-        Normal, CastingSpell, TestingLoS, Querying, QueryingSquare, FindingTarget, ConfirmingTarget, CastQuery, 
+        Normal, CastingSpell, TestingLoS, Querying, QueryingSquare, UsingItem, ConfirmingTarget, CastQuery, 
         AddingNumber, Locked, Drawing, Discarding, TurnComplete, Previous, Undef
     }
 
@@ -53,7 +88,7 @@ namespace WizWar1 {
     }
 
     public enum TargetTypes {
-        Square, WallSpace, Wall, Creation, Wizard, Self, Card, Effect, Spell, Item, Treasure, None, Undef
+        Square, WallSpace, Wall, Creation, Wizard, Self, Card, Effect, Spell, Item, Treasure, Door, None, Undef
     }
 
     public enum SpellType {

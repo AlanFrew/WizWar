@@ -1,70 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using Library;
 
 namespace WizWar1 {
-interface ISpell : ICard, ICopiable<Spell>, IStackable {
-    Wizard Caster {
-        get;
-        set;
-    }
+interface ISpell : ITarget, ISpellOrItemUsage, ICopiable<Spell>, IStackable, IAimable, ICardable {
+    string Name { get; set; }
 
-    ITarget SpellTarget {
-        get;
-        set;
-    }
+    Wizard Caster { get; set; }
 
-    SpellType ActiveSpellType {
-        get;
-    }
+    ITarget SpellTarget { get; set; }
 
-    //void SetActiveSpellType(TargetTypes tTargetType);
+    SpellType ActiveSpellType { get; }
 
-    bool RequiresLoS {
-        get;
-        set;
-    }
+    bool RequiresLoS { get; set; }
 
-    List<Effect> EffectsWaiting {
-        get;
-        set;
-    }
-
-    //static ISpell MakeSpell(Wizard tCaster, ITarget tTarget, String tName);
+    List<SpellType> ValidCastingTypes { get; }
 
     bool IsValidCastingType(SpellType tSpellType);
 
-    bool IsValidSpellTargetParent(ITarget tTarget, Wizard tCaster);
-
-    bool IsValidSpellTarget(ITarget tTarget, Wizard tCaster);
-
-    bool IsValidSpellTargetType(TargetTypes tTargetType);
+    bool IsOnlyValidCastingType(SpellType tSpellType);
 
     void OnResolution();
 
-    //void BecomeSpell();
-
     void OnCast();
 
-    bool AcceptsNumber {
-        get;
-    }
-
-    int CardValue {
-        get;
-        set;
-    }
-
-    double ShotDirection {
-        get;
-        set;
-    }
-
-    List<Marker> Markers  {
-        get;
-        set;
-    }
+    List<Marker> Markers { get; set; }
 }
 }

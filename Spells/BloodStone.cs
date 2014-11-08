@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-class BloodStone : ItemCard {
+﻿namespace WizWar1 {
+class BloodStone : Spell {
     public BloodStone() {
-        Name = "BloodStone";
+        Name = "Bloodstone";
+        Description = "Create a small ruby pendant that replaces lost blood, preventing 1 damage per attack";
+        ValidCastingTypes.Add(SpellType.Item);
+        ValidTargetTypes.Add(TargetTypes.None);
     }
 
-    public override void OnPlayChild() {
-        (PlayTarget as Wizard).giveItem(ItemCard.CreateItem<BloodStoneItem>());
+    public override void OnChildCast() {
+        EffectsWaiting.Add(Effect.New<CreateItemEffect<BloodStoneItem>>(Caster, this, SpellTarget));
     }
 }
 }

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-class DestroyWallEffect : Effect {
+﻿namespace WizWar1 {
+class DestroyWallEffect : DestroyEffect {
     public override void OnRunChild() {
-        GameState.eventDispatcher.Notify(new DestroyObjectEvent(target));
+        GameState.EventDispatcher.Notify(new DestroyObjectEvent(target));
+
+        (target as IWall).Destroy(this);
     }
 }
 }

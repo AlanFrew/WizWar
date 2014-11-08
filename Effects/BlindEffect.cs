@@ -1,47 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace WizWar1 {
 class BlindEffect : Effect, IListener<CastEvent, Event> {
     public BlindEffect() {
         markers.Add(new DurationBasedMarker());
-        GameState.eventDispatcher.Register<CastEvent>(this);
+        GameState.EventDispatcher.Register<CastEvent>(this);
     }
 
     public void OnEvent(CastEvent tEvent) {
         ISpell s = tEvent.SpellBeingCast;
-        if (s.SpellTarget == s.Caster || s.SpellTarget.ActiveTargetType == TargetTypes.Spell) {
+        if (tEvent.SpellBeingCast.Caster != target || s.SpellTarget == s.Caster || s.SpellTarget.ActiveTargetType == TargetTypes.Spell) {
             return;
         }
 
-        double XDistance = (s.SpellTarget as ILocatable).X - s.Caster.X;
-        double YDistance = (s.SpellTarget as ILocatable).Y - s.Caster.Y;
+        double xDistance = (s.SpellTarget as ILocatable).X - s.Caster.X;
+        double yDistance = (s.SpellTarget as ILocatable).Y - s.Caster.Y;
 
-        int rotations = GameState.Dice.Next(-1, 4);
+        int rotations = GameState.Dice.Next(0, 4);
 
         if (rotations == 0) {
+            MessageBox.Show("Despite being blinded, you managed to hit your target");
+
             return;
         }
 
         for (int i = 0; i < rotations; ++i) {
-            double temp = XDistance;
-            XDistance = YDistance;
-            YDistance = temp;
+            double temp = xDistance;
+            xDistance = yDistance;
+            yDistance = temp;
 
-            XDistance = 0 - XDistance;
+            xDistance = 0 - xDistance;
         }
 
-        double newTargetX = (s.SpellTarget as Locatable).X + XDistance;
-        double newTargetY = (s.SpellTarget as Locatable).Y + YDistance;
+        double newTargetX = (s.SpellTarget as Locatable).X + xDistance;
+        double newTargetY = (s.SpellTarget as Locatable).Y + yDistance;
 
         if (s.SpellTarget.ActiveTargetType == TargetTypes.Wizard) {
-            List<Wizard> eligibleWizards = new List<Wizard>();
-            foreach (Wizard w in GameState.wizards) {
+            var eligibleWizards = new List<Wizard>();
+            foreach (Wizard w in GameState.Wizards) {
                 if (w.X == newTargetX && w.Y == newTargetY) {
-                    if (s.IsValidSpellTargetParent(w, s.Caster) ) {
+                    if (s.IsValidTargetParent(w) ) {
                         eligibleWizards.Add(w);
                     }
                 }
@@ -54,9 +53,9 @@ class BlindEffect : Effect, IListener<CastEvent, Event> {
         }
 
         if (s.SpellTarget.ActiveTargetType == TargetTypes.Creation) {
-            List<Creation> eligibleCreations = new List<Creation>();
-            foreach (Creation c in GameState.BoardRef.At(newTargetX, newTargetY).creationsHere) {
-                if (s.IsValidSpellTargetParent(c, s.Caster)) {
+            var eligibleCreations = new List<ICreation>();
+            foreach (ICreation c in GameState.BoardRef.At(newTargetX, newTargetY).creationsHere) {
+                if (s.IsValidTargetParent(c)) {
                     eligibleCreations.Add(c);
                 }
             }
@@ -71,7 +70,7 @@ class BlindEffect : Effect, IListener<CastEvent, Event> {
             IWall w = GameState.BoardRef.LookForWall(newTargetX, newTargetY);
 
             if ( w != null) {
-                if (s.IsValidSpellTargetParent(w, s.Caster)) {
+                if (s.IsValidTargetParent(w)) {
                     s.SpellTarget = w;
                     return;
                 }
@@ -79,10 +78,10 @@ class BlindEffect : Effect, IListener<CastEvent, Event> {
         }
 
         if (s.SpellTarget.ActiveTargetType  == TargetTypes.Item) {
-            List<IItem> eligibleItems = new List<IItem>();
+            var eligibleItems = new List<ILocatable>();
                 
             foreach (IItem i in GameState.BoardRef.At(newTargetX, newTargetY).ItemsHere) {
-                if (s.IsValidSpellTargetParent(i, s.Caster)) {
+                if (s.IsValidTargetParent(i)) {
                     eligibleItems.Add(i);
                 }
             }
@@ -92,10 +91,10 @@ class BlindEffect : Effect, IListener<CastEvent, Event> {
                 return;
             }
                 
-            foreach (Wizard w in GameState.wizards) {
+            foreach (Wizard w in GameState.Wizards) {
                 if (w.X == newTargetX && w.Y == newTargetY) {
                     foreach (IItem i in w.Inventory) {
-                        if (s.IsValidSpellTargetParent(i, s.Caster)) {
+                        if (s.IsValidTargetParent(i)) {
                             eligibleItems.Add(i);
                         }
                     }
@@ -110,7 +109,7 @@ class BlindEffect : Effect, IListener<CastEvent, Event> {
 
         if (s.ActiveTargetType == TargetTypes.Square) {
             Square sq = GameState.BoardRef.At(newTargetX, newTargetY);
-            if (s.IsValidSpellTargetParent(sq, s.Caster)) {
+            if (s.IsValidTargetParent(sq)) {
                 s.SpellTarget = sq;
                 return;
             }
@@ -122,7 +121,5 @@ class BlindEffect : Effect, IListener<CastEvent, Event> {
     public override void OnRunChild() {
         //empty
     }
-
-
 } 
 }

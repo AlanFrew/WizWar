@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class BloodStoneItem : Stone, IListener<DamageEvent, Event> {
     public BloodStoneItem() {
-        GameState.eventDispatcher.Register(this);
+        GameState.EventDispatcher.Register(this);
     }
 
     public void OnEvent(DamageEvent tEvent) {
@@ -19,7 +14,7 @@ class BloodStoneItem : Stone, IListener<DamageEvent, Event> {
         }
     }
 
-    public override bool IsValidTargetForItem(ITarget tTarget) {
+    public override bool IsValidTarget(ITarget tTarget) {
         return false;
     }
 }

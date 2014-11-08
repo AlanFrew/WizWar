@@ -10,13 +10,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WizWar1</RootNamespace>
     <AssemblyName>WizWar1</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -34,8 +35,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -54,20 +57,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attributes\PointBasedAttribute.cs" />
-    <Compile Include="Class1.cs" />
+    <Compile Include="Code GraveYard\Class1.cs" />
     <Compile Include="Effects\AbsorbEffect.cs" />
+    <Compile Include="Effects\AdditionalTurnEffect.cs" />
     <Compile Include="Effects\AlterDurationValue.cs" />
     <Compile Include="Effects\AlterSpellEffect.cs" />
     <Compile Include="Effects\BlindEffect.cs" />
     <Compile Include="Effects\BluntEffect.cs" />
     <Compile Include="Effects\BuddyEffect.cs" />
+    <Compile Include="Effects\DestroyEffect.cs" />
     <Compile Include="Effects\CopySpellEffect.cs" />
     <Compile Include="Effects\CreateWallEffect.cs" />
     <Compile Include="Effects\ExtraActionEffect.cs" />
-    <Compile Include="Effects\CollateralDamageEffect.cs" />
+    <Compile Include="Code GraveYard\CollateralDamageEffect.cs" />
     <Compile Include="Effects\CreateItemEffect.cs" />
+    <Compile Include="Effects\InvisibleEffect.cs" />
     <Compile Include="Effects\MakeCreationEffect.cs" />
-    <Compile Include="Effects\DaggerAttack.cs" />
+    <Compile Include="Code GraveYard\DaggerAttack.cs" />
     <Compile Include="Effects\DestroyItemEffect.cs" />
     <Compile Include="Effects\DestroyWallEffect.cs" />
     <Compile Include="Effects\DispelCreationEffect.cs" />
@@ -82,6 +88,9 @@
     <Compile Include="Effects\ItemThrowEffect.cs" />
     <Compile Include="Effects\MultiplyPointBased.cs" />
     <Compile Include="Effects\NullifyEffect.cs" />
+    <Compile Include="Effects\PowerRunEffect.cs" />
+    <Compile Include="Effects\SlowDeathEffect.cs" />
+    <Compile Include="Effects\SnareEffect.cs" />
     <Compile Include="Effects\TakeDiscardEffect.cs" />
     <Compile Include="Effects\StateControlEffect.cs" />
     <Compile Include="Errors\ImpossibleTaskException.cs" />
@@ -91,37 +100,56 @@
     <Compile Include="Events\Continue Events\ContinueEvent.cs" />
     <Compile Include="Events\Continue Events\WindowCallback.cs" />
     <Compile Include="Events\DrawEvent.cs" />
+    <Compile Include="Events\HealthChangeEvent.cs" />
     <Compile Include="Events\ItemRevealEvent.cs" />
     <Compile Include="Events\DamageEvent.cs" />
     <Compile Include="Events\DestroyObjectEvent.cs" />
     <Compile Include="Events\ItemGainEvent.cs" />
+    <Compile Include="Events\ItemUseEvent.cs" />
+    <Compile Include="Events\PassthroughEvent.cs" />
     <Compile Include="Events\SettleHandEvent.cs" />
     <Compile Include="Events\TargetedEvent.cs" />
     <Compile Include="Implementations\Extensions.cs" />
     <Compile Include="Implementations\ItemCard.cs" />
+    <Compile Include="Implementations\IItemUsage.cs" />
+    <Compile Include="Implementations\NumberedItem.cs" />
+    <Compile Include="Implementations\NumberedSpell.cs" />
     <Compile Include="Implementations\Stone.cs" />
+    <Compile Include="Interfaces\IAimable.cs" />
+    <Compile Include="Interfaces\Cardable.cs" />
+    <Compile Include="Interfaces\ICardable.cs" />
+    <Compile Include="Interfaces\ICarriable.cs" />
     <Compile Include="Interfaces\IDamageable.cs" />
+    <Compile Include="Interfaces\IDestroyable.cs" />
+    <Compile Include="Interfaces\INumberable.cs" />
     <Compile Include="Interfaces\IStackable.cs" />
     <Compile Include="Interfaces\IStone.cs" />
+    <Compile Include="Interfaces\ISpellOrItemUsage.cs" />
     <Compile Include="Items\BloodStoneItem.cs" />
     <Compile Include="Items\BrainStoneItem.cs" />
+    <Compile Include="Items\DaggerItem.cs" />
     <Compile Include="Items\IllusionWallCreation.cs" />
+    <Compile Include="Items\LargeRockItem.cs" />
     <Compile Include="Items\MasterKeyItem.cs" />
+    <Compile Include="Items\PowerStoneItem.cs" />
+    <Compile Include="Items\SolidStoneCreation.cs" />
+    <Compile Include="Items\SoulStoneItem.cs" />
+    <Compile Include="Items\SpeedStoneItem.cs" />
     <Compile Include="Items\WizardBladeItem.cs" />
     <Compile Include="Library\Collections.cs" />
     <Compile Include="Library\ICopiable.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Spells\Absorb.cs" />
     <Compile Include="Spells\AbsorbSpell.cs" />
-    <Compile Include="Spells\Add.cs" />
+    <Compile Include="Spells_NonWorking\Add.cs" />
     <Compile Include="Spells\Amplify.cs" />
     <Compile Include="Spells\Anti-Anti.cs" />
-    <Compile Include="Spells\AroundTheCorner.cs" />
+    <Compile Include="Spells_NonWorking\AroundTheCorner.cs" />
     <Compile Include="Spells\Blind.cs" />
     <Compile Include="Spells\Blunt.cs" />
     <Compile Include="Spells\BrainStone.cs" />
     <Compile Include="Spells\Buddy.cs" />
-    <Compile Include="Spells\CardErasure.cs" />
+    <Compile Include="Spells_NonWorking\CardErasure.cs" />
     <Compile Include="Spells\DestroyWall.cs" />
     <Compile Include="Spells\DispelCreation.cs" />
     <Compile Include="Spells\Drag.cs" />
@@ -139,6 +167,12 @@
     </Compile>
     <Compile Include="User Interface\CardChooser.Designer.cs">
       <DependentUpon>CardChooser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Interface\CardPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Interface\CardPreview.Designer.cs">
+      <DependentUpon>CardPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="User Interface\EffectsWindow.cs">
       <SubType>Form</SubType>
@@ -158,14 +192,26 @@
     <Compile Include="User Interface\TargetChooser.Designer.cs">
       <DependentUpon>TargetChooser.cs</DependentUpon>
     </Compile>
-    <Compile Include="User Interface\DummyForm.cs">
+    <Compile Include="User Interface\TypedListBox2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="User Interface\TypedListBox2.Designer.cs">
+      <DependentUpon>TypedListBox2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Interface\UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="User Interface\UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User Interface\WizWar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User Interface\DummyForm.Designer.cs">
-      <DependentUpon>DummyForm.cs</DependentUpon>
+    <Compile Include="User Interface\WizWar.Designer.cs">
+      <DependentUpon>WizWar.cs</DependentUpon>
     </Compile>
     <Compile Include="Spells\BloodStone.cs" />
-    <Compile Include="Spells\MasterKey.cs" />
+    <Compile Include="Spells_NonWorking\MasterKey.cs" />
     <Compile Include="Spells\FullShield.cs" />
     <Compile Include="Spells\LightningBlast.cs" />
     <Compile Include="Spells\Thornbush.cs" />
@@ -173,9 +219,9 @@
     <Compile Include="Events\SpellCounteredEvent.cs" />
     <Compile Include="Spells\Extend.cs" />
     <Compile Include="Spells\Fireball.cs" />
-    <Compile Include="Spells\WallOfFire.cs" />
+    <Compile Include="Spells_NonWorking\WallOfFire.cs" />
     <Compile Include="Spells\FullReflection.cs" />
-    <Compile Include="Spells\GoAway.cs" />
+    <Compile Include="Spells_NonWorking\GoAway.cs" />
     <Compile Include="Events\StateChangeEvent.cs" />
     <Compile Include="Implementations\CardExtension.cs" />
     <Compile Include="Implementations\CreatedWall.cs" />
@@ -206,18 +252,18 @@
     <Compile Include="Errors\BadCardDescException.cs" />
     <Compile Include="Board.cs" />
     <Compile Include="Implementations\Creation.cs" />
-    <Compile Include="Spells\PassThroughWall.cs" />
-    <Compile Include="Spells\PickLock.cs" />
+    <Compile Include="Spells_NonWorking\PassThroughWall.cs" />
+    <Compile Include="Spells_NonWorking\PickLock.cs" />
     <Compile Include="Spells\PowerRun.cs" />
     <Compile Include="Spells\PowerStone.cs" />
     <Compile Include="Spells\PowerThrust.cs" />
-    <Compile Include="Spells\Reflection.cs" />
-    <Compile Include="Spells\RelocateSector.cs" />
-    <Compile Include="Spells\RemoveLock.cs" />
-    <Compile Include="Spells\RotateSector.cs" />
-    <Compile Include="Spells\ShadowStone.cs" />
-    <Compile Include="Spells\ShieldStone.cs" />
-    <Compile Include="Spells\Shrink.cs" />
+    <Compile Include="Spells_NonWorking\Reflection.cs" />
+    <Compile Include="Spells_NonWorking\RelocateSector.cs" />
+    <Compile Include="Spells_NonWorking\RemoveLock.cs" />
+    <Compile Include="Spells_NonWorking\RotateSector.cs" />
+    <Compile Include="Spells_NonWorking\ShadowStone.cs" />
+    <Compile Include="Spells_NonWorking\ShieldStone.cs" />
+    <Compile Include="Spells_NonWorking\Shrink.cs" />
     <Compile Include="Spells\SlowDeath.cs" />
     <Compile Include="Spells\SoulStone.cs" />
     <Compile Include="Spells\Speed.cs" />
@@ -225,15 +271,15 @@
     <Compile Include="Spells\StoneDead.cs" />
     <Compile Include="Spells\SuddenDeath.cs" />
     <Compile Include="Spells\Swap.cs" />
-    <Compile Include="Spells\Telepath.cs" />
-    <Compile Include="Spells\TeleportOpponent.cs" />
-    <Compile Include="Spells\MistBody.cs" />
-    <Compile Include="Spells\ThoughtSteal.cs" />
-    <Compile Include="Spells\Ugly.cs" />
-    <Compile Include="User Interface\ControlPanel.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Spells_NonWorking\Telepath.cs" />
+    <Compile Include="Spells_NonWorking\TeleportOpponent.cs" />
+    <Compile Include="Spells_NonWorking\MistBody.cs" />
+    <Compile Include="Spells_NonWorking\ThoughtSteal.cs" />
+    <Compile Include="Spells_NonWorking\Ugly.cs" />
+    <Compile Include="Code GraveYard\ControlPanel.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="User Interface\ControlPanel.Designer.cs">
+    <Compile Include="Code GraveYard\ControlPanel.Designer.cs">
       <DependentUpon>ControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Effects\DamageEffect.cs" />
@@ -257,11 +303,11 @@
     <Compile Include="Implementations\Effect.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Event.cs" />
-    <Compile Include="User Interface\Form1.cs">
+    <Compile Include="User Interface\BoardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="User Interface\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="User Interface\BoardForm.Designer.cs">
+      <DependentUpon>BoardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="GameState.cs" />
     <Compile Include="Spells\IllusionWall.cs" />
@@ -269,8 +315,8 @@
     <Compile Include="Spells\Large Rock.cs" />
     <Compile Include="Events\LostTurnEvent.cs" />
     <Compile Include="Library\LibraryFunc.cs" />
-    <Compile Include="Spells\Magic Stone.cs" />
-    <Compile Include="Spells\MagicWall.cs" />
+    <Compile Include="Code GraveYard\Magic Stone.cs" />
+    <Compile Include="Code GraveYard\MagicWall.cs" />
     <Compile Include="MapGenerator.cs" />
     <Compile Include="Events\MoveEvent.cs" />
     <Compile Include="Program.cs" />
@@ -279,15 +325,27 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="WallSpace.cs" />
+    <EmbeddedResource Include="User Interface\BoardForm.en.resx">
+      <DependentUpon>BoardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User Interface\CardChooser.resx">
       <DependentUpon>CardChooser.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Interface\DummyForm.resx">
-      <DependentUpon>DummyForm.cs</DependentUpon>
+    <EmbeddedResource Include="User Interface\CardPreview.resx">
+      <DependentUpon>CardPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\TypedListBox2.resx">
+      <DependentUpon>TypedListBox2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User Interface\WizWar.resx">
+      <DependentUpon>WizWar.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Interface\ControlPanel.resx">
+    <EmbeddedResource Include="Code GraveYard\ControlPanel.resx">
       <DependentUpon>ControlPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -295,8 +353,8 @@
       <DependentUpon>EffectsWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="User Interface\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="User Interface\BoardForm.resx">
+      <DependentUpon>BoardForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="User Interface\InfoPane.resx">
@@ -338,8 +396,8 @@
     <Compile Include="User Interface\UIControl.cs" />
     <Compile Include="Errors\UnreachableException.cs" />
     <Compile Include="Implementations\Wizard.cs" />
-    <Compile Include="Spells\Wizardblade.cs" />
-    <Compile Include="Spells\VisionStone.cs" />
+    <Compile Include="Spells_NonWorking\Wizardblade.cs" />
+    <Compile Include="Spells_NonWorking\VisionStone.cs" />
     <Compile Include="Spells\WaterBolt.cs" />
     <Compile Include="Spells\WaterWall.cs" />
   </ItemGroup>
@@ -362,6 +420,9 @@
     <Content Include="Arena\board01.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Arena\boop1.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Arena\build_page.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -374,15 +435,19 @@
     <Content Include="Arena\button_scroll_up.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Arena\card_border.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Arena\char_page.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Arena\cougar.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Arena\door.bmp">
+    <Content Include="Arena\door.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Arena\ico_wait.png" />
     <Content Include="Arena\horiz_illusion_wall.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -404,12 +469,6 @@
     <Content Include="Arena\ico_foot.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Arena\ico_rod.bmp">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Arena\ico_rod.cur">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Arena\ico_shield.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -428,6 +487,10 @@
     <Content Include="Arena\my_port.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Arena\NewRod.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Arena\NewRod.png" />
     <Content Include="Arena\no_char.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -437,10 +500,10 @@
     <Content Include="Arena\raz.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Arena\Rod.cur">
+    <Content Include="Arena\sgt. admiral.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Arena\sgt. admiral.bmp">
+    <Content Include="Arena\solidstone.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Arena\square_green.bmp">
@@ -473,8 +536,21 @@
     <Content Include="Arena\vert_wall_selected.bmp">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Arena\Wait.cur">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Arena\Wait2.cur.bmp" />
     <Content Include="Info.txt" />
+    <Content Include="Instructions.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="map1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="map2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="map3.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="TODO.txt" />
@@ -483,7 +559,26 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Code GraveYard\" />
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

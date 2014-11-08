@@ -1,30 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace WizWar1 {
-class WrappedListBox : ListBox {    //this class ended up doing nothing
-    private ControlPanel parent;
+	class WrappedListBox<T> : ListBox where T : class {    //this class ended up doing nothing
+		public void Add(Object item) {
+			base.Items.Add(item);
+		}
 
-    public WrappedListBox() {
-        
-    }
-
-    public WrappedListBox(Form tForm) {
-    }
-
-    public WrappedListBox(ControlPanel tParent) {
-        parent = tParent;
-    }
-
-    public WrappedListBox(SelectionMode sm) {
-        
-    }
-
-    public void Add(Object item) {
-        Items.Add(item);
-    }
-}
+		public new T SelectedItem {
+			get { return base.SelectedItem as T; }
+		}
+	}
 }

@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-class Blind : Spell {
+﻿namespace WizWar1 {
+class Blind : NumberedSpell {
     public Blind() {
         Name = "Blind";
-        validCastingTypes.Add(SpellType.Attack);
-        validTargetTypes.Add(TargetTypes.Wizard);
-        markers.Add(new DurationBasedMarker());
-        acceptsNumber = true;
+        Description = "Sear an opponents eyes, causing him to stagger blindly and misdirect his spells";
+        ValidCastingTypes.Add(SpellType.Attack);
+        ValidTargetTypes.Add(TargetTypes.Wizard);
+        Markers.Add(new DurationBasedMarker());
+        //AcceptsNumber = true;
     }
 
-    public override bool IsValidSpellTarget(ITarget tTarget, Wizard tCaster) {
+    public override bool IsValidTarget(ITarget tTarget) {
         if (tTarget is Wizard) {
             return true;
         }
@@ -21,7 +17,7 @@ class Blind : Spell {
     }
 
     public override void OnChildCast() {
-        BlindEffect b = Effect.New<BlindEffect>(Caster, this, SpellTarget);
+        var b = Effect.New<BlindEffect>(Caster, this, SpellTarget);
         EffectsWaiting.Add(b);
     }
 

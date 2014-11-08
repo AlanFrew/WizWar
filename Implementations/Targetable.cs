@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class Targetable : ITarget {
     //protected List<TargetType> myTargetTypes;
     protected TargetTypes activeTargetType;
@@ -22,7 +17,7 @@ class Targetable : ITarget {
             case TargetTypes.Creation:
                 return this is Creation;
             case TargetTypes.Card:
-                return this is Card;
+                return this is ICard;
             default:
                 return false;
         }

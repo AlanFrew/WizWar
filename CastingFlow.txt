@@ -1,0 +1,12 @@
+1. Get Card		Deck.GiveCard
+2. UI Cast spell	Click Cast Button
+3. Find targets		Click target
+3b. Check validity	BoardForm.IsValidTarget
+4. Game Cast Spell	GameState.NewSpell
+5. Create Effects	(T : Spell).OnChildCast
+6. Wait for continue	ContinueButton.Click
+6b. Check validity again	xxx
+7. Resolve Spell	GameState.RunTheStack -> Spell.OnRun -> Spell.OnResolution
+8. Push effects		Spell.OnRun -> GameState.NewEffect
+9. Effect activation	Effect.OnRun()
+10. Effect Continues	Effect.OnRun()	//yes, these are both the same.

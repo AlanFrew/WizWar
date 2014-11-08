@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
-class MasterKeyItem : Item {
+﻿namespace WizWar1 {
+class MasterKeyItem : Item, IListener<PassthroughEvent, Event> {
     public MasterKeyItem() {
-        itemTargetTypes.Add(TargetTypes.None);
+        ValidTargetTypes.Add(TargetTypes.None);
+
+        GameState.EventDispatcher.Register(this);
+    }
+
+    public void OnEvent(PassthroughEvent tEvent)
+    {
+        if (tEvent.Wizard == Carrier && tEvent.Wall is Door) {
+            tEvent.SetFlowControl(Redirect.Proceed, 1.0);
+        }
     }
 }
 }

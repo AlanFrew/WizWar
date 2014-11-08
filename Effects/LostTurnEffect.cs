@@ -1,30 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace WizWar1 {
 class LostTurnEffect : Effect, IListener<TurnStartEvent, Event> {
     public LostTurnEffect() {
         markers.Add(new DurationBasedMarker());
-        GameState.eventDispatcher.Register(this);
+        GameState.EventDispatcher.Register(this);
     }
-
-    //public override void OnRunChild() {
-    //    (target as Wizard).EndTurn();
-    //}
 
     public void OnEvent(TurnStartEvent tEvent) {
         if (tEvent.IsAttempt) {
             //tEvent.nextWizard = GameState.wizards[Library.IndexFixer(GameState.wizards.IndexOf(tEvent.nextWizard) + 1, GameState.wizards.Count)];
         }
         else {
-            if (tEvent.nextWizard == target as Wizard) {
-                GameState.eventDispatcher.Deregister(this);
+            if (tEvent.NextWizard == target as Wizard) {
+                GameState.EventDispatcher.Deregister(this);
                 GameState.ActivePlayer.myUI.State = UIState.TurnComplete;
-                //GameState.TurnCycle(); this seems to shortcut the process and keep the end turn button from going active
-                MessageBox.Show("Lost turn due to Lightning Blast");
+                MessageBox.Show("Lost turn due to " + source);
                 //duration--; //most duration effects tick down on their
             }
         }
@@ -33,6 +24,5 @@ class LostTurnEffect : Effect, IListener<TurnStartEvent, Event> {
     public override void OnRunChild() {
         //I hope leaving this empty doesn't set a bad precedent
     }
-
 }
 }

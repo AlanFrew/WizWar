@@ -1,0 +1,44 @@
+WizWar Instructions updated v1.00005
+
+This is a digital representation of the board game WizWars. You can find the offical rules at 
+http://www.fantasyflightgames.com/ffg_content/wiz-war/WizWar_Rulebook%20v1-12%20low.pdf
+
+WizWar currently only supports hotseat mode. You see two boards, one for each wizard, with their controls underneath.
+
+The board is a labyrinth containing walls, doors, wizards, and treasure. The edges wrap around if there is no wall.
+
+You have a hand of cards that represent spells and items. Select one and use the Cast button to activate it.
+
+Spells have no cost, but you can only use one Attack spell per turn.
+
+Some spells can accept a number to make it more powerful. Click the spell, click Cast, highlight a number, click Number.
+
+You usually need Line of Sight to target something. LoS wraps around the board, but you can't shoot around/through a corner.
+
+Whenever a spell is cast, each player is given priority to respond. The spell goes off once everyone clicks Continue.
+
+You have limited movement, default 3. Use the arrow keys to move.
+
+Press End Turn when you are finished moving and casting.
+
+Item spells will create an item in your inventory.
+
+You can pick up dropped items as well as treasures. This ends your turn.
+
+You can only carry one treasure. Placing an opponent's treasure on your home square wins the game.
+
+You have 15 life. Dying makes you lose.
+
+The Spell Stack box will show what spells are currently attempting to cast.
+
+If the game isn't responding, click Continue on both control panels, or End Turn.
+
+Blue Wizard starts.
+
+You can draw and discard at the end of your turn.
+
+There is an LoSTester button you can use to determine what you can see/target.
+
+You can query a wizard or Square for more info by opening the Show Info window and clicking Query Wizard or Query Square.
+
+The map and various numerical settings can be changed by editing the file WizWar1.exe.config.

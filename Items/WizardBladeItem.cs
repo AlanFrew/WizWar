@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace WizWar1 {
-class WizardBladeItem : Item {
+class WizardBladeItem : NumberedItem {
     public WizardBladeItem() {
-        itemTargetTypes.Add(TargetTypes.Wizard);
-        itemTargetTypes.Add(TargetTypes.Wall);
-        itemTargetTypes.Add(TargetTypes.Creation);
+        ValidTargetTypes.Add(TargetTypes.Wizard);
+        ValidTargetTypes.Add(TargetTypes.Wall);
+        ValidTargetTypes.Add(TargetTypes.Creation);
     }
 
     public override void OnActivationChild() {

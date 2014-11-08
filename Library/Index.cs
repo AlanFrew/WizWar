@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Library {
 /*the Index class stores an array of Indexable objects. An Indexable object has an int[] that holds a set of indexes.
@@ -109,13 +107,13 @@ public class Index<T> where T : IIndexable, new() {
     }
 
     public void ReIndex() {
-        Array.Sort(data, new Index<T>.Comparer());
+        Array.Sort(data, new Comparer());
 
         indexed = true;
     }
 
     public T[] WhosUnderMyMouse(int mouseX, int mouseY) {
-        return Library.SuperSearcher<T>.SuperSearch(data, mouseX, mouseY);
+        return SuperSearcher<T>.SuperSearch(data, mouseX, mouseY);
     }
 
     //public T FindFirst(int tIndex) {

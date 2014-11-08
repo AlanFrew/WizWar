@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WizWar1 {
+﻿namespace WizWar1 {
 class AntiAnti : Spell {
     public AntiAnti() {
         Name = "Anti-Anti";
-        validCastingTypes.Add(SpellType.Counteraction);
-        validTargetTypes.Add(TargetTypes.Spell);
+        Description = "Counter a counterspell that targets an attack";
+        ValidCastingTypes.Add(SpellType.Counteraction);
+        ValidTargetTypes.Add(TargetTypes.Spell);
     }
 
-    public override bool IsValidSpellTarget(ITarget tTarget, Wizard tCaster) {
-        if ((tTarget as ISpell).SpellTarget == tCaster) {
-            if ((tTarget as ISpell).Caster != tCaster) {
-                if ((tTarget as ISpell).ActiveSpellType == SpellType.Counteraction) {
+    public override bool IsValidTarget(ITarget tTarget) {
+        var spell = tTarget as ISpell;
+        if (spell.SpellTarget == Caster) {
+            if (spell.Caster != Caster) {
+                if (spell.ActiveSpellType == SpellType.Counteraction) {
                     return true;
                 }
             }
@@ -25,7 +22,5 @@ class AntiAnti : Spell {
     public override void OnChildCast() {
         EffectsWaiting.Add(Effect.New<NullifyEffect>(Caster, this, SpellTarget));
     }
-
-
 }
 }
